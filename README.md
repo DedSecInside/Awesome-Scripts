@@ -1,3 +1,3 @@
-## Python scripts
+## Scripts
 
-Useful Python Scripts
+Useful scripts made by the community for the community.
