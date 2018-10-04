@@ -1,0 +1,3 @@
+[submodule "Arduinozore"]
+	path = Arduinozore
+	url = https://github.com/S-Amiral/arduinozore
