@@ -14,7 +14,7 @@ Find the list of scripts below under different catagory:
 * weather_api
 
 
-### [Machine Learning & AI](./Machine-Learning-&-AI)
+### [Machine Learning & AI](./Machine%20Learning%20%26%20AI)
 * Face Detection
 * KNN_with_scikit_learn
 * KNN_without_scikit_learn
@@ -35,13 +35,13 @@ Find the list of scripts below under different catagory:
 * wxchallenge_usl.py
 
 
-### [Security & Privacy](./Security-&-Privacy)
+### [Security & Privacy](./Security%20&%20Privacy)
 * CRC
 * KeyLoggers
 * Proxy
 
 
-### [System Scripts](./System-Scripts)
+### [System Scripts](./System%20Scripts)
 * BackupScript
 * RRDEvents
 * System Info
