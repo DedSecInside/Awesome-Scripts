@@ -18,6 +18,7 @@ Find the list of scripts below under different catagory:
 * Face Detection
 * KNN_with_scikit_learn
 * KNN_without_scikit_learn
+* SVM_with_scikit_learn
 
 
 ### [Misc](./Misc)
