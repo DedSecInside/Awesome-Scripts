@@ -27,7 +27,7 @@ Find the list of scripts below under different catagory:
 * 10print.py
 * async_shutdown.py
 * cricbuzz_scrap.py
-* Directory-oraganiser.py
+* Directory-organiser.py
 * GetDataFromRssUrl.py
 * GetTopPostTime.py
 * group_generator.py
