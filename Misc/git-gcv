@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# This script shows the space used by a git repository before and after running 'git gc'.
+# Put it in your ~/bin/ directory or in /usr/local/bin/.
+# git even support it as a sub-command, ie: git gcv (no dash required)
+
+function du()
+{
+	/usr/bin/du -bs $1 | awk '{print $1}'
+}
+
+B="$(du .git)"
+echo -e "\e[1;34m# $(printf "%'d" $B)\e[0m" &&
+git gc &&
+A="$(du .git)" &&
+D="$(printf "%'d" $((B - A)) )"
+if (( (B-A) < 0 )); then
+    C='\e[1;31m'
+else
+    C='\e[1;32m'
+fi
+echo -e "\e[1;34m# $(printf "%'d" $A) = $C$D\e[0m"
