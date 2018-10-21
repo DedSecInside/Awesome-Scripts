@@ -30,6 +30,7 @@ Find the list of scripts below under different catagory:
 * Directory-organiser.py
 * GetDataFromRssUrl.py
 * GetTopPostTime.py
+* git-gcv
 * group_generator.py
 * imdb_movie_picker.py
 * sorted_files.py
