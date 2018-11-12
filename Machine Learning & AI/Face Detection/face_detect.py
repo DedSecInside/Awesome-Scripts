@@ -15,13 +15,11 @@ while(True):
 	# Detect faces in the image
 	faces = faceCascade.detectMultiScale(
 		gray,
-		scaleFactor=1.1,
-		minNeighbors=5,
+		scaleFactor=1.2,
+		minNeighbors=10,
 		minSize=(30, 30)
 		#flags = cv2.CV_HAAR_SCALE_IMAGE
 	)
-
-	print("Found {0} faces!".format(len(faces)))
 
 	# Draw a rectangle around the faces
 	for (x, y, w, h) in faces:
