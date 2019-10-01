@@ -1,6 +1,9 @@
 ## Awesome-Scripts
 
 Useful scripts made by the community for the community.
+<p align="center">
+  <img src="https://hacktoberfest.digitalocean.com/assets/logo-hf19-full-10f3c000cea930c76acc1dedc516ea7118b95353220869a3051848e45ff1d656.svg" width="350" title="Hacktoberfest 2019">
+</p>
 
 <i> DISCLAIMER : The Scripts are not tested therefore use it on your own risk ! </i>
 
