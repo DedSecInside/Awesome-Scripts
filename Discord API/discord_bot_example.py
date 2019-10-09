@@ -1,4 +1,4 @@
-#  make sure you have puthon 3.5.4 or higher
+#  make sure you have python 3.5.4 or higher
 #  By @ofirisakov
 try:
 	import discord
