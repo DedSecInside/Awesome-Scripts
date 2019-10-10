@@ -3,8 +3,11 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from math import sqrt
 from sklearn.model_selection import train_test_split
+<<<<<<< HEAD
 import matplotlib.pyplot as plt
 
+=======
+>>>>>>> 5d9b05fcbcdb3f89b6866817fd72024f5e0fb78f
 
 def main():
 
