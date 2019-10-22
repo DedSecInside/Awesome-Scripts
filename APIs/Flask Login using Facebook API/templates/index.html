@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<style>
+
+			@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+			body{
+				background-color: #55efc4;
+			}
+
+			.center-div
+			{
+				position: absolute;
+				 margin: auto;
+				 top: 0;
+				 right: 0;
+				 bottom: 0;
+				 left: 0;
+				 width: 100px;
+				 height: 100px;
+				 font-family: 'Gloria Hallelujah', cursive;
+			}
+
+
+		 </style>
+
+<div class="center-div">
+    <!--<form method="POST">-->
+        <!--<input type="text" name="username"><br />-->
+        <!--<input type="password" name="password"><br />-->
+        <!--<input type="submit" value="Log in">-->
+    <!--</form>-->
+    <a href="{{ url_for('login') }}" >Login with Facebook</a>
+</div>
+
+</body>
+</html>

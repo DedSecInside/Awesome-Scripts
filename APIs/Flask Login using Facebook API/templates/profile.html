@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+
+		<title>{{ user_name }}</title>
+
+	</head>
+
+	<body>
+
+		<style>
+
+			@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+
+			body{
+				background-color: #55efc4;
+			}
+
+			.center-div
+			{
+				position: absolute;
+				 margin: auto;
+				 top: 0;
+				 right: 0;
+				 bottom: 0;
+				 left: 0;
+				 width: 100px;
+				 height: 100px;
+				 font-family: 'Gloria Hallelujah', cursive;
+			}
+
+
+		 </style>
+
+		<div class="center-div">
+
+			<h1>Welcome {{ user_name }}!</h1>
+			<a href="{{ url_for('logout') }}">Logout</a>
+
+
+		</div>
+
+
+	</body>
+
+</html>
