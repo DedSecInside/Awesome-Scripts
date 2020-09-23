@@ -50,5 +50,5 @@ Find the list of scripts below under different catagory:
 
 
 <p align="center">
-  <img src="https://hacktoberfest.digitalocean.com/assets/logo-hf19-full-10f3c000cea930c76acc1dedc516ea7118b95353220869a3051848e45ff1d656.svg" width="200" title="Hacktoberfest 2019">
+  <img src="pic.svg" width="200" title="Hacktoberfest 2020">
 </p>
