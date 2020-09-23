@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="pic.svg" width="200" title="Hacktoberfest 2020">
+</p>
+
 ## Awesome-Scripts
 Useful scripts made by the community for the community.
 
@@ -48,7 +52,3 @@ Find the list of scripts below under different catagory:
 * RRDEvents
 * System Info
 
-
-<p align="center">
-  <img src="pic.svg" width="200" title="Hacktoberfest 2020">
-</p>
