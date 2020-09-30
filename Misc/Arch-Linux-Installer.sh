@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# INSTRUCTIONS
+# Follow the installation instructions up-to "Configure the system"
+# https://wiki.archlinux.org/index.php/installation_guide#Configure_the_system,
+# then copy this file to /mnt using `cp /Arch-Linux_installer.sh /mnt` and
+# `arch-chroot /mnt` and then `./Arch-Linux_installer.sh` to configure the
+# system according to your needs.
+
 # Setting color variables
 
 colored_echo(){
