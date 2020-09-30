@@ -1,0 +1,26 @@
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 167-169-587
+INFO:werkzeug: * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\project\\fileserver_flask\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 167-169-587
+INFO:werkzeug: * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\project\\fileserver_flask\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 167-169-587
+INFO:werkzeug: * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 167-169-587
+INFO:werkzeug: * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+INFO:werkzeug:10.87.225.191 - - [09/Apr/2018 13:48:40] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.87.225.191 - - [09/Apr/2018 13:48:40] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:10.87.225.191 - - [09/Apr/2018 13:48:51] "POST / HTTP/1.1" 302 -
+INFO:werkzeug:10.87.225.191 - - [09/Apr/2018 13:48:51] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.87.228.60 - - [10/Apr/2018 10:51:26] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.87.228.60 - - [10/Apr/2018 14:16:48] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:10.87.228.60 - - [10/Apr/2018 14:16:56] "GET /demo3.csv HTTP/1.1" 200 -
+INFO:werkzeug:10.63.21.240 - - [10/Apr/2018 14:18:11] "GET /demo3.csv HTTP/1.1" 200 -
