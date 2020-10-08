@@ -90,6 +90,7 @@ Below you can find the list of all awesome scripts which are very useful for the
 * logic_gate_solver
 * mail_sender
 * scrape_espncricinfo
+* image-to-pdf
 
 ### [Security & Privacy](./Security%20&%20Privacy)
 
