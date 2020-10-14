@@ -1,0 +1,4 @@
+cryptg
+pysocks
+hachoir
+pillow
