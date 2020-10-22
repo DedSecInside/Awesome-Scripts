@@ -46,6 +46,7 @@ Below you can find the list of all awesome scripts which are very useful for the
 * Discord API
 * Gmail API Testing
 * Flask login using Facebook API
+* Telegram API
 * weather_api
 
 #### [Twitter_API](./twitter_api)
