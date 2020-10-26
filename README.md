@@ -46,6 +46,7 @@ Below you can find the list of all awesome scripts which are very useful for the
 * Discord API
 * Gmail API Testing
 * Flask login using Facebook API
+* Telegram API
 * weather_api
 
 #### [Twitter_API](./twitter_api)
@@ -61,8 +62,13 @@ Below you can find the list of all awesome scripts which are very useful for the
 * KMeans_from_scratch
 * SVRFE
 * Linear_Regression
+* Linear_Regression_with_Gradient_Descent
 * father_son
 * mulLinReg
+* Stacking
+* Feature Selection
+* Boosting
+* Bagging
 
 ### [Misc](./Misc)
 
@@ -91,6 +97,11 @@ Below you can find the list of all awesome scripts which are very useful for the
 * mail_sender
 * scrape_espncricinfo
 * image-to-pdf
+* Get Location Info
+* Simple File Server Python Flask
+* Website Blocker
+* Image to pdf
+* Morse translator
 
 ### [Security & Privacy](./Security%20&%20Privacy)
 
@@ -108,10 +119,12 @@ Below you can find the list of all awesome scripts which are very useful for the
 * Personalisation
 * FindDuplicateFile
 * Capitalize file names
+* FileContentsToClipboard
 
 ### [File Transfer](./File%20Transfer)
 
 * S3toS3FastFileTransfer
+* upload_to_s3
 
 ### [Problem Solving](./Problem%20Solving)
 
@@ -128,6 +141,7 @@ Below you can find the list of all awesome scripts which are very useful for the
 * Divisible Sum Pair
 * Electronics Shop
 * Encryption
+* Find the Duplicate Number
 * Grading Students
 * Java if-Else
 * Kangaroo
@@ -142,6 +156,9 @@ Below you can find the list of all awesome scripts which are very useful for the
 * The Time in Words
 * Utopian Tree
 * Viral Advertising
+* both
+* items
+* purchase
 
 ### [Web Scraping](./Web%20Scraping)
 
@@ -149,6 +166,7 @@ Below you can find the list of all awesome scripts which are very useful for the
 * bing_search
 * cricbuzz_scrap
 * scrape_images
+* oyo_scrap
 
 ## How to use these scripts?
 
