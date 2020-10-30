@@ -156,9 +156,6 @@ Below you can find the list of all awesome scripts which are very useful for the
 * The Time in Words
 * Utopian Tree
 * Viral Advertising
-* both
-* items
-* purchase
 
 ### [Web Scraping](./Web%20Scraping)
 
