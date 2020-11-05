@@ -22,6 +22,17 @@ class MessageButton:
             The original :tl:`KeyboardButton` object.
     """
     def __init__(self, client, original, chat, bot, msg_id):
+        """
+        Initialize the chat.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            original: (todo): write your description
+            chat: (todo): write your description
+            bot: (todo): write your description
+            msg_id: (todo): write your description
+        """
         self.button = original
         self._bot = bot
         self._chat = chat

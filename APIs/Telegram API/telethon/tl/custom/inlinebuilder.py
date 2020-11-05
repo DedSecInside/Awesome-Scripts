@@ -54,6 +54,13 @@ class InlineBuilder:
                 ID if you need to send two results that are the same.
     """
     def __init__(self, client):
+        """
+        Initialize the client.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+        """
         self._client = client
 
     # noinspection PyIncorrectDocstring
@@ -273,6 +280,20 @@ class InlineBuilder:
             text=None, parse_mode=(), link_preview=True,
             geo=None, period=60, contact=None, game=False, buttons=None
     ):
+          """
+          Use this method to edit_preview.
+
+          Args:
+              self: (todo): write your description
+              text: (str): write your description
+              parse_mode: (todo): write your description
+              link_preview: (str): write your description
+              geo: (str): write your description
+              period: (str): write your description
+              contact: (str): write your description
+              game: (todo): write your description
+              buttons: (str): write your description
+          """
         # Empty strings are valid but false-y; if they're empty use dummy '\0'
         args = ('\0' if text == '' else text, geo, contact, game)
         if sum(1 for x in args if x is not None and x is not False) != 1:

@@ -1,6 +1,11 @@
 # Step by Step Logic Gate Solver. Execute input_equation() to start the program!
 
 def input_equation():
+    """
+    Evaluate input : input input
+
+    Args:
+    """
     print("Enter equation without whitespaces")
     equation = input()
     var = []
@@ -12,6 +17,13 @@ def input_equation():
     print("The answer is:", answer)
 
 def fill_variable(var, equation):
+    """
+    Fill variable with variable.
+
+    Args:
+        var: (array): write your description
+        equation: (str): write your description
+    """
     print("The variables are the following")
     for v in var:
         if(v.isalpha()):
@@ -25,6 +37,12 @@ def fill_variable(var, equation):
     return calculate(equation_n)
 
 def calculate(equation):
+    """
+    Calculate the equation.
+
+    Args:
+        equation: (int): write your description
+    """
     print("Calculating now")
     equation = list(equation)
     equation = solve_complement(equation)
@@ -33,6 +51,12 @@ def calculate(equation):
     return equation
 
 def solve_complement(equation):
+    """
+    Solve the linear equation.
+
+    Args:
+        equation: (todo): write your description
+    """
     unsolve = True
     while(unsolve):
         if("'" in equation):
@@ -50,6 +74,12 @@ def solve_complement(equation):
             return equation
 
 def solve_and(equation):
+    """
+    Solve the linear equations.
+
+    Args:
+        equation: (todo): write your description
+    """
     unsolve = True
     while(unsolve):
         if("." in equation):
@@ -72,6 +102,12 @@ def solve_and(equation):
             return equation
 
 def solve_or(equation):
+    """
+    Solve a linear equation.
+
+    Args:
+        equation: (todo): write your description
+    """
     unsolve = True
     while(unsolve):
         if("+" in equation):

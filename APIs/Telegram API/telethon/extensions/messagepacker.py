@@ -23,16 +23,38 @@ class MessagePacker:
     """
 
     def __init__(self, state, loggers):
+        """
+        Initialize the event loop.
+
+        Args:
+            self: (todo): write your description
+            state: (int): write your description
+            loggers: (todo): write your description
+        """
         self._state = state
         self._deque = collections.deque()
         self._ready = asyncio.Event()
         self._log = loggers[__name__]
 
     def append(self, state):
+        """
+        Add a new state to the queue.
+
+        Args:
+            self: (todo): write your description
+            state: (todo): write your description
+        """
         self._deque.append(state)
         self._ready.set()
 
     def extend(self, states):
+        """
+        Extend the given states.
+
+        Args:
+            self: (todo): write your description
+            states: (todo): write your description
+        """
         self._deque.extend(states)
         self._ready.set()
 

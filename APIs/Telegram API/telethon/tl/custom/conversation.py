@@ -14,8 +14,20 @@ _EDIT_COLLISION_DELTA = 0.001
 
 
 def _checks_cancelled(f):
+    """
+    Decorator to check if the decorated function is called.
+
+    Args:
+        f: (todo): write your description
+    """
     @functools.wraps(f)
     def wrapper(self, *args, **kwargs):
+        """
+        Decorator for a function callable.
+
+        Args:
+            self: (todo): write your description
+        """
         if self._cancelled:
             raise asyncio.CancelledError('The conversation was cancelled before')
 
@@ -41,6 +53,19 @@ class Conversation(ChatGetter):
     def __init__(self, client, input_chat,
                  *, timeout, total_timeout, max_messages,
                  exclusive, replies_are_responses):
+        """
+        Initialize the client.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            input_chat: (todo): write your description
+            timeout: (int): write your description
+            total_timeout: (float): write your description
+            max_messages: (int): write your description
+            exclusive: (todo): write your description
+            replies_are_responses: (todo): write your description
+        """
         # This call resets the client
         ChatGetter.__init__(self, input_chat=input_chat)
 
@@ -339,6 +364,13 @@ class Conversation(ChatGetter):
         return await self._get_result(future, start_time, timeout, self._custom, counter)
 
     async def _check_custom(self, built):
+          """
+          Check if custom custom custom custom custom type.
+
+          Args:
+              self: (todo): write your description
+              built: (todo): write your description
+          """
         for key, (ev, fut) in list(self._custom.items()):
             ev_type = type(ev)
             inst = built[ev_type]
@@ -353,6 +385,13 @@ class Conversation(ChatGetter):
                     del self._custom[key]
 
     def _on_new_message(self, response):
+        """
+        Handle incoming incoming response
+
+        Args:
+            self: (todo): write your description
+            response: (todo): write your description
+        """
         response = response.message
         if response.chat_id != self.chat_id or response.out:
             return
@@ -380,6 +419,13 @@ class Conversation(ChatGetter):
                 del self._pending_replies[msg_id]
 
     def _on_edit(self, message):
+        """
+        Use this method to edit incoming messages.
+
+        Args:
+            self: (todo): write your description
+            message: (str): write your description
+        """
         message = message.message
         if message.chat_id != self.chat_id or message.out:
             return
@@ -406,6 +452,13 @@ class Conversation(ChatGetter):
                 del self._pending_edits[msg_id]
 
     def _on_read(self, event):
+        """
+        Handle incoming message
+
+        Args:
+            self: (todo): write your description
+            event: (todo): write your description
+        """
         if event.chat_id != self.chat_id or event.inbox:
             return
 
@@ -422,6 +475,13 @@ class Conversation(ChatGetter):
             del self._pending_reads[to_remove]
 
     def _get_message_id(self, message):
+        """
+        Return the message id of message.
+
+        Args:
+            self: (todo): write your description
+            message: (str): write your description
+        """
         if message is not None:  # 0 is valid but false-y, check for None
             return message if isinstance(message, int) else message.id
         elif self._last_outgoing:
@@ -431,6 +491,17 @@ class Conversation(ChatGetter):
 
     @_checks_cancelled
     def _get_result(self, future, start_time, timeout, pending, target_id):
+        """
+        Return the result of the future.
+
+        Args:
+            self: (todo): write your description
+            future: (str): write your description
+            start_time: (todo): write your description
+            timeout: (int): write your description
+            pending: (int): write your description
+            target_id: (str): write your description
+        """
         due = self._total_due
         if timeout is None:
             timeout = self._timeout
@@ -449,6 +520,13 @@ class Conversation(ChatGetter):
         )
 
     def _cancel_all(self, exception=None):
+        """
+        Cancel all pending jobs.
+
+        Args:
+            self: (todo): write your description
+            exception: (todo): write your description
+        """
         self._cancelled = True
         for pending in itertools.chain(
                 self._pending_responses.values(),
@@ -466,6 +544,12 @@ class Conversation(ChatGetter):
                 fut.cancel()
 
     async def __aenter__(self):
+          """
+          Use this method to get the chat.
+
+          Args:
+              self: (todo): write your description
+          """
         self._input_chat = \
             await self._client.get_input_entity(self._input_chat)
 
@@ -517,6 +601,15 @@ class Conversation(ChatGetter):
             conv.cancel()
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
+          """
+          Cance of the exception.
+
+          Args:
+              self: (todo): write your description
+              exc_type: (todo): write your description
+              exc_val: (todo): write your description
+              exc_tb: (todo): write your description
+          """
         chat_id = utils.get_peer_id(self._chat_peer)
         conv_set = self._client._conversations[chat_id]
         conv_set.discard(self)

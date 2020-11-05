@@ -4,6 +4,15 @@ class RPCError(Exception):
     message = None
 
     def __init__(self, request, message, code=None):
+        """
+        Initialize the request.
+
+        Args:
+            self: (todo): write your description
+            request: (dict): write your description
+            message: (str): write your description
+            code: (int): write your description
+        """
         super().__init__('RPCError {}: {}{}'.format(
             code or self.code, message, self._fmt_request(request)))
 
@@ -13,9 +22,21 @@ class RPCError(Exception):
 
     @staticmethod
     def _fmt_request(request):
+        """
+        Returns the request string.
+
+        Args:
+            request: (todo): write your description
+        """
         return ' (caused by {})'.format(request.__class__.__name__)
 
     def __reduce__(self):
+        """
+        Reduce the request.
+
+        Args:
+            self: (todo): write your description
+        """
         return type(self), (self.request, self.message, self.code)
 
 

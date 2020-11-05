@@ -5,6 +5,11 @@ from math import sqrt
 from sklearn.model_selection import train_test_split
 
 def main():
+    """
+    Main function.
+
+    Args:
+    """
 
     df = pd.read_csv('father_son.csv',error_bad_lines=False, delimiter=',')
     X = df['Father'].values[:,np.newaxis]
@@ -38,6 +43,12 @@ def main():
 
 
 def mean(n):
+    """
+    Calculate mean of the distribution.
+
+    Args:
+        n: (array): write your description
+    """
     s = 0
     length = len(n)
     for j in range(0,length):
@@ -46,6 +57,13 @@ def mean(n):
     return mean
 
 def sub(x,mean):
+    """
+    Returns the mean of x.
+
+    Args:
+        x: (int): write your description
+        mean: (int): write your description
+    """
     arr = []
     length = len(x) 
     for j in range(0,length):
@@ -53,6 +71,13 @@ def sub(x,mean):
     return arr
 
 def mul(x,y):
+    """
+    Mul ( x y - > y
+
+    Args:
+        x: (array): write your description
+        y: (array): write your description
+    """
     mult = []
     length = len(x)
     for j in range(0,length):
@@ -60,6 +85,12 @@ def mul(x,y):
     return mult     
 
 def meanSquared(x):
+    """
+    Calculate mean of x.
+
+    Args:
+        x: (array): write your description
+    """
     meansq = []
     length = len(x)
     for j in range(0,length):
@@ -67,6 +98,12 @@ def meanSquared(x):
     return meansq   
 
 def sumXY(x):
+    """
+    Returns the sum of x.
+
+    Args:
+        x: (todo): write your description
+    """
     sumRes = 0
     length = len(x)
     for j in range(0,length):
@@ -74,6 +111,14 @@ def sumXY(x):
     return sumRes
   
 def predict(x,B1,B0):
+    """
+    Predict the values of x1 x1.
+
+    Args:
+        x: (array): write your description
+        B1: (array): write your description
+        B0: (array): write your description
+    """
     pred = []
     length = len(x)
     for j in range(0,length):
@@ -81,6 +126,13 @@ def predict(x,B1,B0):
     return pred    
 
 def RMSE(predicted,y):
+    """
+    Calculates error.
+
+    Args:
+        predicted: (todo): write your description
+        y: (array): write your description
+    """
     rmse = 0
     error = []
     errorsq = []

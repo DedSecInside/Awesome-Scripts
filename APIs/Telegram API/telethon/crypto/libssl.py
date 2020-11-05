@@ -16,6 +16,11 @@ __log__ = logging.getLogger(__name__)
 
 
 def _find_ssl_lib():
+    """
+    Find the libssl library.
+
+    Args:
+    """
     lib = ctypes.util.find_library('ssl')
     # macOS 10.15 segfaults on  unversioned crypto libraries.
     # We therefore pin the current stable version here
@@ -96,6 +101,14 @@ else:
         ]
 
     def decrypt_ige(cipher_text, key, iv):
+        """
+        Decrypts a cipher_text.
+
+        Args:
+            cipher_text: (todo): write your description
+            key: (str): write your description
+            iv: (str): write your description
+        """
         aes_key = AES_KEY()
         key_len = ctypes.c_int(8 * len(key))
         key = (ctypes.c_ubyte * len(key))(*key)
@@ -118,6 +131,14 @@ else:
         return bytes(out_ptr)
 
     def encrypt_ige(plain_text, key, iv):
+        """
+        Encrypts the given plaintext.
+
+        Args:
+            plain_text: (todo): write your description
+            key: (str): write your description
+            iv: (todo): write your description
+        """
         aes_key = AES_KEY()
         key_len = ctypes.c_int(8 * len(key))
         key = (ctypes.c_ubyte * len(key))(*key)

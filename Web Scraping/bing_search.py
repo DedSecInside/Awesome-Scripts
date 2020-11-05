@@ -9,6 +9,12 @@ from bs4 import BeautifulSoup
 results = []
 
 def main(query):
+    """
+    Main function.
+
+    Args:
+        query: (str): write your description
+    """
     global page
     session = requests.Session()
     # * (Configuration)

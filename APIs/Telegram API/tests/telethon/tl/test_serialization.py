@@ -4,6 +4,11 @@ from telethon.tl import types, functions
 
 
 def test_nested_invalid_serialization():
+    """
+    Test if the account is valid.
+
+    Args:
+    """
     large_long = 2**62
     request = functions.account.SetPrivacyRequest(
         key=types.InputPrivacyKeyChatInvite(),

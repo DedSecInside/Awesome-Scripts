@@ -10,15 +10,34 @@ import feedparser
 import requests
 class GetPostFromUrl():
     def __init__(self):
+        """
+        Reset the complete urls
+
+        Args:
+            self: (todo): write your description
+        """
         self.completed_urls = {}
 
     def initialize(self, parameters):
+        """
+        Initialize the results.
+
+        Args:
+            self: (todo): write your description
+            parameters: (dict): write your description
+        """
         self.user_urls = parameters.get('urls_of_sites',[])
         self.limit = 2
         self.results = []
 
 
     def get_results(self):
+        """
+        Parse results
+
+        Args:
+            self: (todo): write your description
+        """
         for rss_url in self.user_urls:
             #print("RSS_URL:",rss_url)
             try:
@@ -33,6 +52,14 @@ class GetPostFromUrl():
 
 
     def transform(self,rss_url,result_data):
+        """
+        Transform image data.
+
+        Args:
+            self: (array): write your description
+            rss_url: (str): write your description
+            result_data: (array): write your description
+        """
         no_of_posts = 0
         data = []
         for each_post in result_data["entries"]:
@@ -105,6 +132,13 @@ class GetPostFromUrl():
             self.completed_urls[rss_url] = data
 
     def store_results(self,output):
+        """
+        Store results to a json.
+
+        Args:
+            self: (todo): write your description
+            output: (str): write your description
+        """
         filename = "GetPostFromUrl" + ("_".join(str(datetime.now()).split(" "))).replace(":","-") + ".json"
         with open(filename,"w") as f:
             json.dump(output,f,indent=2)

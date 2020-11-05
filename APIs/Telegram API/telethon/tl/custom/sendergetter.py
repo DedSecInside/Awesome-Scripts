@@ -8,6 +8,15 @@ class SenderGetter(abc.ABC):
     methods.
     """
     def __init__(self, sender_id=None, *, sender=None, input_sender=None):
+        """
+        Initialize a sender.
+
+        Args:
+            self: (todo): write your description
+            sender_id: (str): write your description
+            sender: (todo): write your description
+            input_sender: (todo): write your description
+        """
         self._sender_id = sender_id
         self._sender = sender
         self._input_sender = input_sender

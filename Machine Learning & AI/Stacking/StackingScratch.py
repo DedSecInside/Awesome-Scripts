@@ -7,6 +7,12 @@ from math import exp
 
 # Load a CSV file
 def load_csv(filename):
+    """
+    Load a csv file.
+
+    Args:
+        filename: (str): write your description
+    """
 	dataset = list()
 	with open(filename, 'r') as file:
 		csv_reader = reader(file)
@@ -18,11 +24,25 @@ def load_csv(filename):
 
 # Convert string column to float
 def str_column_to_float(dataset, column):
+    """
+    Convert a column to a float.
+
+    Args:
+        dataset: (todo): write your description
+        column: (int): write your description
+    """
 	for row in dataset:
 		row[column] = float(row[column].strip())
 
 # Convert string column to integer
 def str_column_to_int(dataset, column):
+    """
+    Convert a column to integers.
+
+    Args:
+        dataset: (todo): write your description
+        column: (todo): write your description
+    """
 	class_values = [row[column] for row in dataset]
 	unique = set(class_values)
 	lookup = dict()
@@ -34,6 +54,13 @@ def str_column_to_int(dataset, column):
 
 # Split a dataset into k folds
 def cross_validation_split(dataset, n_folds):
+    """
+    Split a list of each dataset in the dataset.
+
+    Args:
+        dataset: (todo): write your description
+        n_folds: (int): write your description
+    """
 	dataset_split = list()
 	dataset_copy = list(dataset)
 	fold_size = int(len(dataset) / n_folds)
@@ -47,6 +74,13 @@ def cross_validation_split(dataset, n_folds):
 
 # Calculate accuracy percentage
 def accuracy_metric(actual, predicted):
+    """
+    Accuracy accuracy.
+
+    Args:
+        actual: (todo): write your description
+        predicted: (todo): write your description
+    """
 	correct = 0
 	for i in range(len(actual)):
 		if actual[i] == predicted[i]:
@@ -55,6 +89,14 @@ def accuracy_metric(actual, predicted):
 
 # Evaluate an algorithm using a cross validation split
 def evaluate_algorithm(dataset, algorithm, n_folds, *args):
+    """
+    Evaluate the model on the test set.
+
+    Args:
+        dataset: (todo): write your description
+        algorithm: (todo): write your description
+        n_folds: (int): write your description
+    """
 	folds = cross_validation_split(dataset, n_folds)
 	scores = list()
 	for fold in folds:
@@ -74,6 +116,13 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 
 # Calculate the Euclidean distance between two vectors
 def euclidean_distance(row1, row2):
+    """
+    Calculate the euclidean distance.
+
+    Args:
+        row1: (int): write your description
+        row2: (int): write your description
+    """
 	distance = 0.0
 	for i in range(len(row1)-1):
 		distance += (row1[i] - row2[i])**2
@@ -81,6 +130,14 @@ def euclidean_distance(row1, row2):
 
 # Locate neighbors for a new row
 def get_neighbors(train, test_row, num_neighbors):
+    """
+    Get the neighbors of the nearest neighbors.
+
+    Args:
+        train: (bool): write your description
+        test_row: (str): write your description
+        num_neighbors: (int): write your description
+    """
 	distances = list()
 	for train_row in train:
 		dist = euclidean_distance(test_row, train_row)
@@ -93,6 +150,14 @@ def get_neighbors(train, test_row, num_neighbors):
 
 # Make a prediction with kNN
 def knn_predict(model, test_row, num_neighbors=2):
+    """
+    Predict the neighbors of a model.
+
+    Args:
+        model: (todo): write your description
+        test_row: (todo): write your description
+        num_neighbors: (int): write your description
+    """
 	neighbors = get_neighbors(model, test_row, num_neighbors)
 	output_values = [row[-1] for row in neighbors]
 	prediction = max(set(output_values), key=output_values.count)
@@ -100,10 +165,23 @@ def knn_predict(model, test_row, num_neighbors=2):
 
 # Prepare the kNN model
 def knn_model(train):
+    """
+    Returns a model instance of a model.
+
+    Args:
+        train: (bool): write your description
+    """
 	return train
 
 # Make a prediction with weights
 def perceptron_predict(model, row):
+    """
+    Predict activation.
+
+    Args:
+        model: (todo): write your description
+        row: (todo): write your description
+    """
 	activation = model[0]
 	for i in range(len(row)-1):
 		activation += model[i + 1] * row[i]
@@ -111,6 +189,14 @@ def perceptron_predict(model, row):
 
 # Estimate Perceptron weights using stochastic gradient descent
 def perceptron_model(train, l_rate=0.01, n_epoch=5000):
+    """
+    Performron model.
+
+    Args:
+        train: (bool): write your description
+        l_rate: (float): write your description
+        n_epoch: (int): write your description
+    """
 	weights = [0.0 for i in range(len(train[0]))]
 	for epoch in range(n_epoch):
 		for row in train:
@@ -123,6 +209,13 @@ def perceptron_model(train, l_rate=0.01, n_epoch=5000):
 
 # Make a prediction with coefficients
 def logistic_regression_predict(model, row):
+    """
+    Predict logistic regression.
+
+    Args:
+        model: (todo): write your description
+        row: (todo): write your description
+    """
 	yhat = model[0]
 	for i in range(len(row)-1):
 		yhat += model[i + 1] * row[i]
@@ -130,6 +223,14 @@ def logistic_regression_predict(model, row):
 
 # Estimate logistic regression coefficients using stochastic gradient descent
 def logistic_regression_model(train, l_rate=0.01, n_epoch=5000):
+    """
+    Logistic regression.
+
+    Args:
+        train: (bool): write your description
+        l_rate: (float): write your description
+        n_epoch: (int): write your description
+    """
 	coef = [0.0 for i in range(len(train[0]))]
 	for epoch in range(n_epoch):
 		for row in train:
@@ -142,6 +243,14 @@ def logistic_regression_model(train, l_rate=0.01, n_epoch=5000):
 
 # Make predictions with sub-models and construct a new stacked row
 def to_stacked_row(models, predict_list, row):
+    """
+    Convert a list of models to a row.
+
+    Args:
+        models: (todo): write your description
+        predict_list: (list): write your description
+        row: (todo): write your description
+    """
 	stacked_row = list()
 	for i in range(len(models)):
 		prediction = predict_list[i](models[i], row)
@@ -151,6 +260,13 @@ def to_stacked_row(models, predict_list, row):
 
 # Stacked Generalization Algorithm
 def stacking(train, test):
+    """
+    Stacking a prediction.
+
+    Args:
+        train: (bool): write your description
+        test: (bool): write your description
+    """
 	model_list = [knn_model, perceptron_model]
 	predict_list = [knn_predict, perceptron_predict]
 	models = list()

@@ -28,6 +28,18 @@ class _DialogsIter(RequestIter):
     async def _init(
             self, offset_date, offset_id, offset_peer, ignore_pinned, ignore_migrated, folder
     ):
+          """
+          Initialize this message.
+
+          Args:
+              self: (todo): write your description
+              offset_date: (todo): write your description
+              offset_id: (str): write your description
+              offset_peer: (int): write your description
+              ignore_pinned: (bool): write your description
+              ignore_migrated: (bool): write your description
+              folder: (todo): write your description
+          """
         self.request = functions.messages.GetDialogsRequest(
             offset_date=offset_date,
             offset_id=offset_id,
@@ -49,6 +61,12 @@ class _DialogsIter(RequestIter):
         self.ignore_migrated = ignore_migrated
 
     async def _load_next_chunk(self):
+          """
+          Loads the next chunk from the queue.
+
+          Args:
+              self: (todo): write your description
+          """
         self.request.limit = min(self.left, _MAX_CHUNK_SIZE)
         r = await self.client(self.request)
 
@@ -105,6 +123,13 @@ class _DialogsIter(RequestIter):
 
 class _DraftsIter(RequestIter):
     async def _init(self, entities, **kwargs):
+          """
+          Initialize the message queue.
+
+          Args:
+              self: (todo): write your description
+              entities: (dict): write your description
+          """
         if not entities:
             r = await self.client(functions.messages.GetAllDraftsRequest())
             items = r.updates
@@ -127,6 +152,12 @@ class _DraftsIter(RequestIter):
         )
 
     async def _load_next_chunk(self):
+          """
+          Returns a list of the next chunk.
+
+          Args:
+              self: (todo): write your description
+          """
         return []
 
 

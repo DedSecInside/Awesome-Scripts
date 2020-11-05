@@ -27,10 +27,22 @@ from .tl.custom.sendergetter import SenderGetter
 
 
 def _syncify_wrap(t, method_name):
+    """
+    Decorator toilio. coroutine.
+
+    Args:
+        t: (todo): write your description
+        method_name: (str): write your description
+    """
     method = getattr(t, method_name)
 
     @functools.wraps(method)
     def syncified(*args, **kwargs):
+        """
+        Run a coroutine that runs a coroutine.
+
+        Args:
+        """
         coro = method(*args, **kwargs)
         loop = asyncio.get_event_loop()
         if loop.is_running():

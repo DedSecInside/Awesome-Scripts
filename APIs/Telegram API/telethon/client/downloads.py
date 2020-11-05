@@ -28,6 +28,20 @@ class _DirectDownloadIter(RequestIter):
     async def _init(
             self, file, dc_id, offset, stride, chunk_size, request_size, file_size, msg_data
     ):
+          """
+          Initialize file.
+
+          Args:
+              self: (todo): write your description
+              file: (str): write your description
+              dc_id: (str): write your description
+              offset: (int): write your description
+              stride: (int): write your description
+              chunk_size: (int): write your description
+              request_size: (int): write your description
+              file_size: (int): write your description
+              msg_data: (str): write your description
+          """
         self.request = functions.upload.GetFileRequest(
             file, offset=offset, limit=request_size)
 
@@ -59,6 +73,12 @@ class _DirectDownloadIter(RequestIter):
                 self._exported = False
 
     async def _load_next_chunk(self):
+          """
+          Read the next chunk from the next chunk.
+
+          Args:
+              self: (todo): write your description
+          """
         cur = await self._request()
         self.buffer.append(cur)
         if len(cur) < self.request.limit:
@@ -68,6 +88,12 @@ class _DirectDownloadIter(RequestIter):
             self.request.offset += self._stride
 
     async def _request(self):
+          """
+          Make a request.
+
+          Args:
+              self: (todo): write your description
+          """
         try:
             result = await self.client._call(self._sender, self.request)
             if isinstance(result, types.upload.FileCdnRedirect):
@@ -105,6 +131,12 @@ class _DirectDownloadIter(RequestIter):
             return await self._request()
 
     async def close(self):
+          """
+          Close the connection.
+
+          Args:
+              self: (todo): write your description
+          """
         if not self._sender:
             return
 
@@ -117,9 +149,21 @@ class _DirectDownloadIter(RequestIter):
             self._sender = None
 
     async def __aenter__(self):
+          """
+          Return a decorator that will be used in a call.
+
+          Args:
+              self: (todo): write your description
+          """
         return self
 
     async def __aexit__(self, *args):
+          """
+          Close the connection to exit.
+
+          Args:
+              self: (todo): write your description
+          """
         await self.close()
 
     __enter__ = helpers._sync_enter
@@ -128,6 +172,14 @@ class _DirectDownloadIter(RequestIter):
 
 class _GenericDownloadIter(_DirectDownloadIter):
     async def _load_next_chunk(self, mask=MIN_CHUNK_SIZE - 1):
+          """
+          Load the next chunk from a chunk.
+
+          Args:
+              self: (todo): write your description
+              mask: (str): write your description
+              MIN_CHUNK_SIZE: (int): write your description
+          """
         # 1. Fetch enough for one chunk
         data = b''
 
@@ -492,6 +544,21 @@ class DownloadMethods:
             key: bytes = None,
             iv: bytes = None,
             msg_data: tuple = None) -> typing.Optional[bytes]:
+          """
+          Downloads a file.
+
+          Args:
+              self: (todo): write your description
+              input_location: (str): write your description
+              file: (str): write your description
+              part_size_kb: (int): write your description
+              file_size: (int): write your description
+              progress_callback: (str): write your description
+              dc_id: (str): write your description
+              key: (str): write your description
+              iv: (str): write your description
+              msg_data: (str): write your description
+          """
         if not part_size_kb:
             if not file_size:
                 part_size_kb = 64  # Reasonable default
@@ -659,6 +726,22 @@ class DownloadMethods:
             dc_id: int = None,
             msg_data: tuple = None
     ):
+        """
+        Iterate over the download.
+
+        Args:
+            self: (todo): write your description
+            file: (str): write your description
+            offset: (int): write your description
+            stride: (int): write your description
+            limit: (int): write your description
+            chunk_size: (int): write your description
+            request_size: (int): write your description
+            MAX_CHUNK_SIZE: (int): write your description
+            file_size: (int): write your description
+            dc_id: (str): write your description
+            msg_data: (str): write your description
+        """
         info = utils._get_file_info(file)
         if info.dc_id is not None:
             dc_id = info.dc_id
@@ -715,10 +798,23 @@ class DownloadMethods:
 
     @staticmethod
     def _get_thumb(thumbs, thumb):
+        """
+        Return the threshold of the thumbnail.
+
+        Args:
+            thumbs: (todo): write your description
+            thumb: (todo): write your description
+        """
         # Seems Telegram has changed the order and put `PhotoStrippedSize`
         # last while this is the smallest (layer 116). Ensure we have the
         # sizes sorted correctly with a custom function.
         def sort_thumbs(thumb):
+            """
+            Sort a threshold of a threshold.
+
+            Args:
+                thumb: (todo): write your description
+            """
             if isinstance(thumb, types.PhotoStrippedSize):
                 return 1, len(thumb.bytes)
             if isinstance(thumb, types.PhotoCachedSize):
@@ -746,6 +842,14 @@ class DownloadMethods:
             return None
 
     def _download_cached_photo_size(self: 'TelegramClient', size, file):
+        """
+        Download the size of the file.
+
+        Args:
+            self: (todo): write your description
+            size: (int): write your description
+            file: (str): write your description
+        """
         # No need to download anything, simply write the bytes
         if isinstance(size, types.PhotoStrippedSize):
             data = utils.stripped_photo_to_jpg(size.bytes)

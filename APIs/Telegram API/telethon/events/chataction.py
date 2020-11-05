@@ -31,6 +31,15 @@ class ChatAction(EventBuilder):
     """
     @classmethod
     def build(cls, update, others=None, self_id=None):
+        """
+        Create a chat message.
+
+        Args:
+            cls: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            self_id: (str): write your description
+        """
         if isinstance(update, types.UpdateChannelPinnedMessage) and update.id == 0:
             # Telegram does not always send
             # UpdateChannelPinnedMessage for new pins
@@ -156,6 +165,21 @@ class ChatAction(EventBuilder):
         def __init__(self, where, new_pin=None, new_photo=None,
                      added_by=None, kicked_by=None, created=None,
                      users=None, new_title=None, unpin=None):
+            """
+            Use this method to the bot.
+
+            Args:
+                self: (todo): write your description
+                where: (int): write your description
+                new_pin: (list): write your description
+                new_photo: (int): write your description
+                added_by: (int): write your description
+                kicked_by: (str): write your description
+                created: (todo): write your description
+                users: (todo): write your description
+                new_title: (todo): write your description
+                unpin: (int): write your description
+            """
             if isinstance(where, types.MessageService):
                 self.action_message = where
                 where = where.peer_id
@@ -205,6 +229,13 @@ class ChatAction(EventBuilder):
             self.unpin = unpin
 
         def _set_client(self, client):
+            """
+            Set client client.
+
+            Args:
+                self: (todo): write your description
+                client: (todo): write your description
+            """
             super()._set_client(client)
             if self.action_message:
                 self.action_message._finish_init(client, self._entities, None)

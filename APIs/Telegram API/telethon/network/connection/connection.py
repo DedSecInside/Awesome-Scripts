@@ -29,6 +29,18 @@ class Connection(abc.ABC):
     packet_codec = None
 
     def __init__(self, ip, port, dc_id, *, loggers, proxy=None, local_addr=None):
+        """
+        Initialize a connection to the proxy.
+
+        Args:
+            self: (todo): write your description
+            ip: (str): write your description
+            port: (int): write your description
+            dc_id: (str): write your description
+            loggers: (todo): write your description
+            proxy: (str): write your description
+            local_addr: (str): write your description
+        """
         self._ip = ip
         self._port = port
         self._dc_id = dc_id  # only for MTProxy, it's an abstraction leak
@@ -46,6 +58,14 @@ class Connection(abc.ABC):
         self._recv_queue = asyncio.Queue(1)
 
     async def _connect(self, timeout=None, ssl=None):
+          """
+          Connect to a connection.
+
+          Args:
+              self: (todo): write your description
+              timeout: (int): write your description
+              ssl: (todo): write your description
+          """
         if not self._proxy:
             if self._local_addr is not None:
                 local_addr = (self._local_addr, None)
@@ -222,12 +242,31 @@ class Connection(abc.ABC):
             self._writer.write(self._codec.tag)
 
     def _send(self, data):
+        """
+        Sends a packet.
+
+        Args:
+            self: (str): write your description
+            data: (todo): write your description
+        """
         self._writer.write(self._codec.encode_packet(data))
 
     async def _recv(self):
+          """
+          Receive a packet from the socket.
+
+          Args:
+              self: (todo): write your description
+          """
         return await self._codec.read_packet(self._reader)
 
     def __str__(self):
+        """
+        Return a string representation of this node.
+
+        Args:
+            self: (todo): write your description
+        """
         return '{}:{}/{}'.format(
             self._ip, self._port,
             self.__class__.__name__.replace('Connection', '')
@@ -244,13 +283,32 @@ class ObfuscatedConnection(Connection):
     obfuscated_io = None
 
     def _init_conn(self):
+        """
+        Initialize the connection.
+
+        Args:
+            self: (todo): write your description
+        """
         self._obfuscation = self.obfuscated_io(self)
         self._writer.write(self._obfuscation.header)
 
     def _send(self, data):
+        """
+        Sends a packet.
+
+        Args:
+            self: (str): write your description
+            data: (todo): write your description
+        """
         self._obfuscation.write(self._codec.encode_packet(data))
 
     async def _recv(self):
+          """
+          Receive a packet from the socket.
+
+          Args:
+              self: (todo): write your description
+          """
         return await self._codec.read_packet(self._obfuscation)
 
 

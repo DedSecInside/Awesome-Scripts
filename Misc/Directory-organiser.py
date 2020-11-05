@@ -5,6 +5,11 @@ import os
 
 
 def path():
+    """
+    Parse command line arguments.
+
+    Args:
+    """
     parse = argparse.ArgumentParser(
         add_help=True, description="Organize your files to different directories according to their type")
     parse.add_argument('directory_path', type=str, default='./',

@@ -15,6 +15,12 @@ app.secret_key = 'many random bytes'
 
 @app.route('/', defaults={'req_path': ''})
 def dir_listing(req_path):
+    """
+    Return a list of all files.
+
+    Args:
+        req_path: (str): write your description
+    """
     files = os.listdir(FILES_DIR)
     file_dict_list = []
     for filename in files:
@@ -30,13 +36,30 @@ def dir_listing(req_path):
 
 @app.route('/<path:path>', methods=['GET'])
 def sendFile(path):
+    """
+    Sends a file to the specified path.
+
+    Args:
+        path: (str): write your description
+    """
     return send_from_directory(FILES_DIR, path, as_attachment=True, mimetype='application/octet-stream')
 
 def allowed_file(filename):
+    """
+    Return true if a file is allowed.
+
+    Args:
+        filename: (str): write your description
+    """
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/', methods=['POST'])
 def uploadFile():
+    """
+    Upload a file
+
+    Args:
+    """
     if 'file' not in request.files:
         flash('No file part')
         return redirect(request.url)

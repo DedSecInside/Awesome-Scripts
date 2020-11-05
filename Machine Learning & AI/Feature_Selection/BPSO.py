@@ -8,6 +8,13 @@ np.set_printoptions(threshold=np.nan)
 
 # Load data from the given benchmarked datasets
 def loadDataset(filename,testSet=[]):
+    """
+    Loads a csv files.
+
+    Args:
+        filename: (str): write your description
+        testSet: (list): write your description
+    """
     with open(filename, 'r') as csvfile:
         lines = csv.reader(csvfile)
         dataset = list(lines)

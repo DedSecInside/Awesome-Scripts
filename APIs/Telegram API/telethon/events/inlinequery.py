@@ -49,6 +49,16 @@ class InlineQuery(EventBuilder):
     """
     def __init__(
             self, users=None, *, blacklist_users=False, func=None, pattern=None):
+        """
+        Initialize the pattern.
+
+        Args:
+            self: (todo): write your description
+            users: (todo): write your description
+            blacklist_users: (str): write your description
+            func: (callable): write your description
+            pattern: (str): write your description
+        """
         super().__init__(users, blacklist_chats=blacklist_users, func=func)
 
         if isinstance(pattern, str):
@@ -62,10 +72,26 @@ class InlineQuery(EventBuilder):
 
     @classmethod
     def build(cls, update, others=None, self_id=None):
+        """
+        Builds a new queryset from this query.
+
+        Args:
+            cls: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            self_id: (str): write your description
+        """
         if isinstance(update, types.UpdateBotInlineQuery):
             return cls.Event(update)
 
     def filter(self, event):
+        """
+        Filter the text.
+
+        Args:
+            self: (todo): write your description
+            event: (todo): write your description
+        """
         if self.pattern:
             match = self.pattern(event.text)
             if not match:
@@ -90,6 +116,13 @@ class InlineQuery(EventBuilder):
                 function, which is ``re.compile(...).match`` by default.
         """
         def __init__(self, query):
+            """
+            Initialize chat chat
+
+            Args:
+                self: (todo): write your description
+                query: (str): write your description
+            """
             super().__init__(chat_peer=types.PeerUser(query.user_id))
             SenderGetter.__init__(self, query.user_id)
             self.query = query
@@ -97,6 +130,13 @@ class InlineQuery(EventBuilder):
             self._answered = False
 
         def _set_client(self, client):
+            """
+            Sets the client s client.
+
+            Args:
+                self: (todo): write your description
+                client: (todo): write your description
+            """
             super()._set_client(client)
             self._sender, self._input_sender = utils._get_entity_pair(
                 self.sender_id, self._entities, client._entity_cache)
@@ -236,6 +276,12 @@ class InlineQuery(EventBuilder):
 
         @staticmethod
         def _as_future(obj):
+            """
+            Converts an object to a future. future.
+
+            Args:
+                obj: (todo): write your description
+            """
             if inspect.isawaitable(obj):
                 return asyncio.ensure_future(obj)
 

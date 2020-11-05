@@ -24,6 +24,15 @@ logger = logging.getLogger(__name__)
 
 
 def get_env(name, message, cast=str):
+    """
+    Get an environment variable.
+
+    Args:
+        name: (str): write your description
+        message: (str): write your description
+        cast: (todo): write your description
+        str: (str): write your description
+    """
     if name in os.environ:
         return os.environ[name]
     while True:
@@ -47,6 +56,14 @@ bot = TelegramClient(
 # If we don't `SetBotPrecheckoutResultsRequest`, money won't be charged from buyer, and nothing will happen next.
 @bot.on(events.Raw(types.UpdateBotPrecheckoutQuery))
 async def payment_pre_checkout_handler(event: types.UpdateBotPrecheckoutQuery):
+      """
+      Process pre - processing pre - processing.
+
+      Args:
+          event: (todo): write your description
+          types: (str): write your description
+          UpdateBotPrecheckoutQuery: (todo): write your description
+      """
     if event.payload.decode('UTF-8') == 'product A':
         # so we have to confirm payment
         await bot(
@@ -81,6 +98,12 @@ async def payment_pre_checkout_handler(event: types.UpdateBotPrecheckoutQuery):
 # That event is handled at the end, when customer payed.
 @bot.on(events.Raw(types.UpdateNewMessage))
 async def payment_received_handler(event):
+      """
+      Handles a payment event.
+
+      Args:
+          event: (todo): write your description
+      """
     if isinstance(event.message.action, types.MessageActionPaymentSentMe):
         payment: types.MessageActionPaymentSentMe = event.message.action
         # do something after payment was recieved
@@ -94,6 +117,18 @@ async def payment_received_handler(event):
 # let's put it in one function for more easier way
 def generate_invoice(price_label: str, price_amount: int, currency: str, title: str,
                      description: str, payload: str, start_param: str) -> types.InputMediaInvoice:
+    """
+    Generate an invoice.
+
+    Args:
+        price_label: (str): write your description
+        price_amount: (todo): write your description
+        currency: (str): write your description
+        title: (str): write your description
+        description: (str): write your description
+        payload: (todo): write your description
+        start_param: (str): write your description
+    """
     price = types.LabeledPrice(label=price_label, amount=price_amount)  # label - just a text, amount=10000 means 100.00
     invoice = types.Invoice(
         currency=currency,  # currency like USD
@@ -135,11 +170,29 @@ def generate_invoice(price_label: str, price_amount: int, currency: str, title: 
 
 @bot.on(events.NewMessage(pattern='/start'))
 async def start_handler(event: events.NewMessage.Event):
+      """
+      Start the event handler.
+
+      Args:
+          event: (todo): write your description
+          events: (todo): write your description
+          NewMessage: (str): write your description
+          Event: (todo): write your description
+      """
     await event.respond('/product_a - product A\n/product_b - product B\n/product_c - product, shall cause an error')
 
 
 @bot.on(events.NewMessage(pattern='/product_a'))
 async def start_handler(event: events.NewMessage.Event):
+      """
+      Use this method to send a new chat.
+
+      Args:
+          event: (todo): write your description
+          events: (todo): write your description
+          NewMessage: (str): write your description
+          Event: (todo): write your description
+      """
     await bot.send_message(
         event.chat_id, 'Sending invoice A',
         file=generate_invoice(
@@ -151,6 +204,15 @@ async def start_handler(event: events.NewMessage.Event):
 
 @bot.on(events.NewMessage(pattern='/product_b'))
 async def start_handler(event: events.NewMessage.Event):
+      """
+      Use this method to send a chat.
+
+      Args:
+          event: (todo): write your description
+          events: (todo): write your description
+          NewMessage: (str): write your description
+          Event: (todo): write your description
+      """
     await bot.send_message(
         event.chat_id, 'Sending invoice B',
         file=generate_invoice(
@@ -162,6 +224,15 @@ async def start_handler(event: events.NewMessage.Event):
 
 @bot.on(events.NewMessage(pattern='/product_c'))
 async def start_handler(event: events.NewMessage.Event):
+      """
+      Use this method to send a chat.
+
+      Args:
+          event: (todo): write your description
+          events: (todo): write your description
+          NewMessage: (str): write your description
+          Event: (todo): write your description
+      """
     await bot.send_message(
         event.chat_id, 'Sending invoice C',
         file=generate_invoice(
@@ -172,6 +243,11 @@ async def start_handler(event: events.NewMessage.Event):
 
 
 async def main():
+      """
+      Start the bot.
+
+      Args:
+      """
     await bot.start()
     await bot.run_until_disconnected()
 

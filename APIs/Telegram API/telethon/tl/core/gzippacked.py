@@ -8,6 +8,13 @@ class GzipPacked(TLObject):
     CONSTRUCTOR_ID = 0x3072cfa1
 
     def __init__(self, data):
+        """
+        Initialize data.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         self.data = data
 
     @staticmethod
@@ -25,20 +32,45 @@ class GzipPacked(TLObject):
             return data
 
     def __bytes__(self):
+        """
+        Return the gzip string.
+
+        Args:
+            self: (todo): write your description
+        """
         return struct.pack('<I', GzipPacked.CONSTRUCTOR_ID) + \
                TLObject.serialize_bytes(gzip.compress(self.data))
 
     @staticmethod
     def read(reader):
+        """
+        Reads a gzip document.
+
+        Args:
+            reader: (todo): write your description
+        """
         constructor = reader.read_int(signed=False)
         assert constructor == GzipPacked.CONSTRUCTOR_ID
         return gzip.decompress(reader.tgread_bytes())
 
     @classmethod
     def from_reader(cls, reader):
+        """
+        Deserialize a gzip document.
+
+        Args:
+            cls: (todo): write your description
+            reader: (todo): write your description
+        """
         return GzipPacked(gzip.decompress(reader.tgread_bytes()))
 
     def to_dict(self):
+        """
+        Return a dict representation of the dict.
+
+        Args:
+            self: (todo): write your description
+        """
         return {
             '_': 'GzipPacked',
             'data': self.data

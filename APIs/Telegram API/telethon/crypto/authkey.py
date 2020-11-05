@@ -22,10 +22,23 @@ class AuthKey:
 
     @property
     def key(self):
+        """
+        Returns the key of the key.
+
+        Args:
+            self: (todo): write your description
+        """
         return self._key
 
     @key.setter
     def key(self, value):
+        """
+        Return the private key for the value.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         if not value:
             self._key = self.aux_hash = self.key_id = None
             return
@@ -57,7 +70,20 @@ class AuthKey:
         return int.from_bytes(sha1(data).digest()[4:20], 'little', signed=True)
 
     def __bool__(self):
+        """
+        Returns true if the boolean is true false otherwise.
+
+        Args:
+            self: (todo): write your description
+        """
         return bool(self._key)
 
     def __eq__(self, other):
+        """
+        Return true if other is equal to other.
+
+        Args:
+            self: (todo): write your description
+            other: (todo): write your description
+        """
         return isinstance(other, type(self)) and other.key == self._key

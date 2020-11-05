@@ -11,6 +11,14 @@ class RequestState:
     __slots__ = ('container_id', 'msg_id', 'request', 'data', 'future', 'after')
 
     def __init__(self, request, after=None):
+        """
+        Initialize this request.
+
+        Args:
+            self: (todo): write your description
+            request: (dict): write your description
+            after: (todo): write your description
+        """
         self.container_id = None
         self.msg_id = None
         self.request = request

@@ -24,6 +24,15 @@ class Forward(ChatGetter, SenderGetter):
             in the original :tl:`MessageFwdHeader`.
     """
     def __init__(self, client, original, entities):
+        """
+        Initialize the input entities.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            original: (todo): write your description
+            entities: (dict): write your description
+        """
         # Copy all the fields, not reference! It would cause memory cycles:
         #   self.original_fwd.original_fwd.original_fwd.original_fwd
         # ...would be valid if we referenced.

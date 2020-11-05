@@ -6,6 +6,13 @@ from .tl import types
 
 
 def check_prime_and_good_check(prime: int, g: int):
+    """
+    Check that the number of the corresp.
+
+    Args:
+        prime: (todo): write your description
+        g: (todo): write your description
+    """
     good_prime_bits_count = 2048
     if prime < 0 or prime.bit_length() != good_prime_bits_count:
         raise ValueError('bad prime count {}, expected {}'
@@ -43,6 +50,13 @@ def check_prime_and_good_check(prime: int, g: int):
 
 
 def check_prime_and_good(prime_bytes: bytes, g: int):
+    """
+    R calculates the cyclic angle 2.
+
+    Args:
+        prime_bytes: (todo): write your description
+        g: (todo): write your description
+    """
     good_prime = bytes((
         0xC7, 0x1C, 0xAE, 0xB9, 0xC6, 0xB1, 0xC9, 0x04, 0x8E, 0x6C, 0x52, 0x2F, 0x70, 0xF1, 0x3F, 0x73,
         0x98, 0x0D, 0x40, 0x23, 0x8E, 0x3E, 0x21, 0xC1, 0x49, 0x34, 0xD0, 0x37, 0x56, 0x3D, 0x93, 0x0F,
@@ -69,6 +83,13 @@ def check_prime_and_good(prime_bytes: bytes, g: int):
 
 
 def is_good_large(number: int, p: int) -> bool:
+    """
+    Check if a number.
+
+    Args:
+        number: (int): write your description
+        p: (todo): write your description
+    """
     return number > 0 and p - number > 0
 
 
@@ -76,14 +97,32 @@ SIZE_FOR_HASH = 256
 
 
 def num_bytes_for_hash(number: bytes) -> bytes:
+    """
+    Returns the number of bytes in the number.
+
+    Args:
+        number: (int): write your description
+    """
     return bytes(SIZE_FOR_HASH - len(number)) + number
 
 
 def big_num_for_hash(g: int) -> bytes:
+    """
+    Return the big - endian hash.
+
+    Args:
+        g: (todo): write your description
+    """
     return g.to_bytes(SIZE_FOR_HASH, 'big')
 
 
 def sha256(*p: bytes) -> bytes:
+    """
+    Calculate sha digest.
+
+    Args:
+        p: (int): write your description
+    """
     hash = hashlib.sha256()
     for q in p:
         hash.update(q)
@@ -91,6 +130,13 @@ def sha256(*p: bytes) -> bytes:
 
 
 def is_good_mod_exp_first(modexp, prime) -> bool:
+    """
+    Determine if modexpand_exp_first.
+
+    Args:
+        modexp: (todo): write your description
+        prime: (todo): write your description
+    """
     diff = prime - modexp
     min_diff_bits_count = 2048 - 64
     max_mod_exp_size = 256
@@ -103,15 +149,39 @@ def is_good_mod_exp_first(modexp, prime) -> bool:
 
 
 def xor(a: bytes, b: bytes) -> bytes:
+    """
+    Xor ( b.
+
+    Args:
+        a: (todo): write your description
+        b: (todo): write your description
+    """
     return bytes(x ^ y for x, y in zip(a, b))
 
 
 def pbkdf2sha512(password: bytes, salt: bytes, iterations: int):
+    """
+    Hashes a salt - key pair.
+
+    Args:
+        password: (str): write your description
+        salt: (str): write your description
+        iterations: (int): write your description
+    """
     return hashlib.pbkdf2_hmac('sha512', password, salt, iterations)
 
 
 def compute_hash(algo: types.PasswordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow,
                  password: str):
+    """
+    Compute a hash for the algorithm
+
+    Args:
+        algo: (todo): write your description
+        types: (todo): write your description
+        PasswordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow: (todo): write your description
+        password: (str): write your description
+    """
     hash1 = sha256(algo.salt1, password.encode('utf-8'), algo.salt1)
     hash2 = sha256(algo.salt2, hash1, algo.salt2)
     hash3 = pbkdf2sha512(hash2, algo.salt1, 100000)
@@ -120,6 +190,15 @@ def compute_hash(algo: types.PasswordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter1000
 
 def compute_digest(algo: types.PasswordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow,
                    password: str):
+    """
+    Computes the digest of a password.
+
+    Args:
+        algo: (todo): write your description
+        types: (str): write your description
+        PasswordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow: (todo): write your description
+        password: (str): write your description
+    """
     try:
         check_prime_and_good(algo.p, algo.g)
     except ValueError:
@@ -134,6 +213,16 @@ def compute_digest(algo: types.PasswordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter10
 
 # https://github.com/telegramdesktop/tdesktop/blob/18b74b90451a7db2379a9d753c9cbaf8734b4d5d/Telegram/SourceFiles/core/core_cloud_password.cpp
 def compute_check(request: types.account.Password, password: str):
+    """
+    Compute a check.
+
+    Args:
+        request: (todo): write your description
+        types: (todo): write your description
+        account: (todo): write your description
+        Password: (str): write your description
+        password: (str): write your description
+    """
     algo = request.current_algo
     if not isinstance(algo, types.PasswordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow):
         raise ValueError('unsupported password algorithm {}'
@@ -161,6 +250,11 @@ def compute_check(request: types.account.Password, password: str):
     kg_x = (k * g_x) % p
 
     def generate_and_check_random():
+        """
+        Generate a random random hash.
+
+        Args:
+        """
         random_size = 256
         while True:
             random = os.urandom(random_size)

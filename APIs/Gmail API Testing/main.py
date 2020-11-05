@@ -7,6 +7,11 @@ from oauth2client import file, client, tools
 SCOPES = 'https://www.googleapis.com/auth/gmail.readonly'
 
 def main():
+    """
+    Main function.
+
+    Args:
+    """
     
     store = file.Storage('token.json')
     creds = store.get()

@@ -10,9 +10,23 @@ class IntermediatePacketCodec(PacketCodec):
     obfuscate_tag = tag
 
     def encode_packet(self, data):
+        """
+        Encode the given packet.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         return struct.pack('<i', len(data)) + data
 
     async def read_packet(self, reader):
+          """
+          Reads a packet from the network.
+
+          Args:
+              self: (todo): write your description
+              reader: (todo): write your description
+          """
         length = struct.unpack('<i', await reader.readexactly(4))[0]
         return await reader.readexactly(length)
 
@@ -26,11 +40,25 @@ class RandomizedIntermediatePacketCodec(IntermediatePacketCodec):
     obfuscate_tag = b'\xdd\xdd\xdd\xdd'
 
     def encode_packet(self, data):
+        """
+        Encode a single packet.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         pad_size = random.randint(0, 3)
         padding = os.urandom(pad_size)
         return super().encode_packet(data + padding)
 
     async def read_packet(self, reader):
+          """
+          Read a single packet.
+
+          Args:
+              self: (todo): write your description
+              reader: (todo): write your description
+          """
         packet_with_padding = await super().read_packet(reader)
         pad_size = len(packet_with_padding) % 4
         if pad_size > 0:

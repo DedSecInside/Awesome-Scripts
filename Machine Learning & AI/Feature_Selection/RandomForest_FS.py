@@ -12,6 +12,11 @@ from sklearn.svm import LinearSVC
 
 
 def main():
+    """
+    Main function.
+
+    Args:
+    """
 
 	trainingSet=[]
 	testSet=[]
@@ -67,6 +72,15 @@ def main():
 	print("After Feature Selection",accuracy_score(y_test, y_important_pred))
 
 def loadDataset(filename, split, trainingSet=[] , testSet=[]):
+    """
+    Load a dataset.
+
+    Args:
+        filename: (str): write your description
+        split: (str): write your description
+        trainingSet: (todo): write your description
+        testSet: (list): write your description
+    """
 	with open(filename, 'r') as csvfile:
 	    lines = csv.reader(csvfile)
 	    dataset = list(lines)

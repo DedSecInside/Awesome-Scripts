@@ -104,6 +104,11 @@ class AuthMethods:
         """
         if code_callback is None:
             def code_callback():
+                """
+                Callback for callback.
+
+                Args:
+                """
                 return input('Please enter the code you received: ')
         elif not callable(code_callback):
             raise ValueError(
@@ -136,6 +141,20 @@ class AuthMethods:
     async def _start(
             self: 'TelegramClient', phone, password, bot_token, force_sms,
             code_callback, first_name, last_name, max_attempts):
+          """
+          Start a new connection.
+
+          Args:
+              self: (todo): write your description
+              phone: (str): write your description
+              password: (str): write your description
+              bot_token: (str): write your description
+              force_sms: (bool): write your description
+              code_callback: (str): write your description
+              first_name: (str): write your description
+              last_name: (str): write your description
+              max_attempts: (int): write your description
+          """
         if not self.is_connected():
             await self.connect()
 
@@ -693,9 +712,21 @@ class AuthMethods:
     # region with blocks
 
     async def __aenter__(self):
+          """
+          Start an asyncioenter.
+
+          Args:
+              self: (todo): write your description
+          """
         return await self.start()
 
     async def __aexit__(self, *args):
+          """
+          Disconnects a coroutine.
+
+          Args:
+              self: (todo): write your description
+          """
         await self.disconnect()
 
     __enter__ = helpers._sync_enter

@@ -27,6 +27,13 @@ class StringSession(MemorySession):
     * `decode` definition must be ``def decode(value: str) -> bytes:``.
     """
     def __init__(self, string: str = None):
+        """
+        Initialize an authentication string.
+
+        Args:
+            self: (todo): write your description
+            string: (todo): write your description
+        """
         super().__init__()
         if string:
             if string[0] != CURRENT_VERSION:
@@ -43,13 +50,31 @@ class StringSession(MemorySession):
 
     @staticmethod
     def encode(x: bytes) -> str:
+        """
+        Encode a base64 encoded string.
+
+        Args:
+            x: (todo): write your description
+        """
         return base64.urlsafe_b64encode(x).decode('ascii')
 
     @staticmethod
     def decode(x: str) -> bytes:
+        """
+        Decode a base64 encoded string.
+
+        Args:
+            x: (todo): write your description
+        """
         return base64.urlsafe_b64decode(x)
 
     def save(self: Session):
+        """
+        Save auth string.
+
+        Args:
+            self: (todo): write your description
+        """
         if not self.auth_key:
             return ''
 

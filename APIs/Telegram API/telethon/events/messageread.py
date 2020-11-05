@@ -31,11 +31,30 @@ class MessageRead(EventBuilder):
     """
     def __init__(
             self, chats=None, *, blacklist_chats=False, func=None, inbox=False):
+        """
+        Initialize the box.
+
+        Args:
+            self: (todo): write your description
+            chats: (todo): write your description
+            blacklist_chats: (todo): write your description
+            func: (callable): write your description
+            inbox: (array): write your description
+        """
         super().__init__(chats, blacklist_chats=blacklist_chats, func=func)
         self.inbox = inbox
 
     @classmethod
     def build(cls, update, others=None, self_id=None):
+        """
+        Creates a new channel.
+
+        Args:
+            cls: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            self_id: (str): write your description
+        """
         if isinstance(update, types.UpdateReadHistoryInbox):
             return cls.Event(update.peer, update.max_id, False)
         elif isinstance(update, types.UpdateReadHistoryOutbox):
@@ -55,6 +74,13 @@ class MessageRead(EventBuilder):
                              contents=True)
 
     def filter(self, event):
+        """
+        Filters out of the filter.
+
+        Args:
+            self: (todo): write your description
+            event: (todo): write your description
+        """
         if self.inbox == event.outbox:
             return
 
@@ -79,6 +105,17 @@ class MessageRead(EventBuilder):
         """
         def __init__(self, peer=None, max_id=None, out=False, contents=False,
                      message_ids=None):
+            """
+            Initialize a message.
+
+            Args:
+                self: (todo): write your description
+                peer: (todo): write your description
+                max_id: (int): write your description
+                out: (str): write your description
+                contents: (todo): write your description
+                message_ids: (str): write your description
+            """
             self.outbox = out
             self.contents = contents
             self._message_ids = message_ids or []

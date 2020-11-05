@@ -44,6 +44,15 @@ class MessageEdited(NewMessage):
     """
     @classmethod
     def build(cls, update, others=None, self_id=None):
+        """
+        Builds a new message
+
+        Args:
+            cls: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            self_id: (str): write your description
+        """
         if isinstance(update, (types.UpdateEditMessage,
                                types.UpdateEditChannelMessage)):
             return cls.Event(update.message)

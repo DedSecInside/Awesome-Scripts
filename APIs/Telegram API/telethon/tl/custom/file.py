@@ -16,6 +16,13 @@ class File:
     The original media is available through the ``media`` attribute.
     """
     def __init__(self, media):
+        """
+        Initialize the media. media.
+
+        Args:
+            self: (todo): write your description
+            media: (todo): write your description
+        """
         self.media = media
 
     @property
@@ -127,6 +134,14 @@ class File:
             return self.media.size
 
     def _from_attr(self, cls, field):
+        """
+        Return an instance of this document.
+
+        Args:
+            self: (todo): write your description
+            cls: (todo): write your description
+            field: (todo): write your description
+        """
         if isinstance(self.media, types.Document):
             for attr in self.media.attributes:
                 if isinstance(attr, cls):

@@ -7,6 +7,12 @@ from ..tl import TLRequest
 class ReadCancelledError(Exception):
     """Occurs when a read operation was cancelled."""
     def __init__(self):
+        """
+        Initialize the state
+
+        Args:
+            self: (todo): write your description
+        """
         super().__init__('The read operation was cancelled.')
 
 
@@ -16,6 +22,14 @@ class TypeNotFoundError(Exception):
     when trying to read a TLObject with an invalid constructor code.
     """
     def __init__(self, invalid_constructor_id, remaining):
+        """
+        Stub
+
+        Args:
+            self: (todo): write your description
+            invalid_constructor_id: (str): write your description
+            remaining: (todo): write your description
+        """
         super().__init__(
             'Could not find a matching Constructor ID for the TLObject '
             'that was supposed to be read with ID {:08x}. Most likely, '
@@ -32,6 +46,14 @@ class InvalidChecksumError(Exception):
     packet doesn't match the expected checksum.
     """
     def __init__(self, checksum, valid_checksum):
+        """
+        Initialize checksum.
+
+        Args:
+            self: (todo): write your description
+            checksum: (todo): write your description
+            valid_checksum: (todo): write your description
+        """
         super().__init__(
             'Invalid checksum ({} when {} was expected). '
             'This packet should be skipped.'
@@ -47,6 +69,13 @@ class InvalidBufferError(BufferError):
     For instance, 404 means "forgotten/broken authorization key", while
     """
     def __init__(self, payload):
+        """
+        Initialize the payload.
+
+        Args:
+            self: (todo): write your description
+            payload: (todo): write your description
+        """
         self.payload = payload
         if len(payload) == 4:
             self.code = -struct.unpack('<i', payload)[0]
@@ -63,6 +92,12 @@ class SecurityError(Exception):
     Generic security error, mostly used when generating a new AuthKey.
     """
     def __init__(self, *args):
+        """
+        Initialize the class.
+
+        Args:
+            self: (todo): write your description
+        """
         if not args:
             args = ['A security check failed.']
         super().__init__(*args)
@@ -74,6 +109,12 @@ class CdnFileTamperedError(SecurityError):
     and its expected hash.
     """
     def __init__(self):
+        """
+        Initialize the state
+
+        Args:
+            self: (todo): write your description
+        """
         super().__init__(
             'The CDN file has been altered and its download cancelled.'
         )
@@ -84,6 +125,12 @@ class AlreadyInConversationError(Exception):
     Occurs when another exclusive conversation is opened in the same chat.
     """
     def __init__(self):
+        """
+        Initialize the superclass
+
+        Args:
+            self: (todo): write your description
+        """
         super().__init__(
             'Cannot open exclusive conversation in a '
             'chat that already has one open conversation'
@@ -130,6 +177,14 @@ class BadMessageError(Exception):
     }
 
     def __init__(self, request, code):
+        """
+        Initialize the request.
+
+        Args:
+            self: (todo): write your description
+            request: (dict): write your description
+            code: (int): write your description
+        """
         super().__init__(request, self.ErrorMessages.get(
             code,
             'Unknown error code (this should not happen): {}.'.format(code)))
@@ -141,6 +196,15 @@ class MultiError(Exception):
     """Exception container for multiple `TLRequest`'s."""
 
     def __new__(cls, exceptions, result, requests):
+        """
+        Return a new result object from the given result.
+
+        Args:
+            cls: (todo): write your description
+            exceptions: (todo): write your description
+            result: (todo): write your description
+            requests: (list): write your description
+        """
         if len(result) != len(exceptions) != len(requests):
             raise ValueError(
                 'Need result, exception and request for each error')

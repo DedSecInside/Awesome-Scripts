@@ -2,6 +2,12 @@ import re
 
 
 def _fmt_strings(*dicts):
+    """
+    Fmt_strings.
+
+    Args:
+        dicts: (dict): write your description
+    """
     for d in dicts:
         for k, v in d.items():
             if v in ('None', 'True', 'False'):
@@ -163,6 +169,12 @@ class TLArg:
         self.generic_definition = generic_definition
 
     def type_hint(self):
+        """
+        Returns the mimetype.
+
+        Args:
+            self: (todo): write your description
+        """
         cls = self.type
         if '.' in cls:
             cls = cls.split('.')[1]
@@ -186,6 +198,12 @@ class TLArg:
         return result
 
     def real_type(self):
+        """
+        Return the real type.
+
+        Args:
+            self: (todo): write your description
+        """
         # Find the real type representation by updating it as required
         real_type = self.type
         if self.flag_indicator:
@@ -206,21 +224,47 @@ class TLArg:
         return real_type
 
     def __str__(self):
+        """
+        Return the name of this type.
+
+        Args:
+            self: (todo): write your description
+        """
         if self.generic_definition:
             return '{{{}:{}}}'.format(self.name, self.real_type())
         else:
             return '{}:{}'.format(self.name, self.real_type())
 
     def __repr__(self):
+        """
+        Return a repr string representation.
+
+        Args:
+            self: (todo): write your description
+        """
         return str(self).replace(':date', ':int').replace('?date', '?int')
 
     def to_dict(self):
+        """
+        Return a dict representation of this type.
+
+        Args:
+            self: (todo): write your description
+        """
         return {
             'name': self.name.replace('is_self', 'self'),
             'type': re.sub(r'\bdate$', 'int', self.real_type())
         }
 
     def as_example(self, f, indent=0):
+        """
+        Write an example to an example.
+
+        Args:
+            self: (todo): write your description
+            f: (todo): write your description
+            indent: (todo): write your description
+        """
         if self.is_generic:
             f.write('other_request')
             return
@@ -244,5 +288,11 @@ class TLArg:
             self.cls[0].as_example(f, indent)
 
     def omit_example(self):
+        """
+        Determine if the example can be built.
+
+        Args:
+            self: (todo): write your description
+        """
         return (self.is_flag or self.can_be_inferred) \
                and self.name in OMITTED_EXAMPLES

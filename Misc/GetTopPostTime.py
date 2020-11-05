@@ -4,6 +4,13 @@ from datetime import datetime,timedelta
 import dateutil.parser
 class GetTopPostTime():
     def set_info(self,parameters):
+        """
+        Set the info about a parameter
+
+        Args:
+            self: (todo): write your description
+            parameters: (dict): write your description
+        """
         self.access_token = parameters.get("access_token","")#add your access token
         self.no_of_days_from_now = parameters.get("no_of_days",7)
         self.since = parameters.get("since",str((datetime.now()-timedelta(days=self.no_of_days_from_now)).date()))
@@ -17,6 +24,12 @@ class GetTopPostTime():
 
 
     def get_all_posts_between_range(self):
+        """
+        Get all posts in the blog.
+
+        Args:
+            self: (todo): write your description
+        """
         output_format="%Y-%m-%d"
         result = requests.get("https://graph.facebook.com/"+str(self.page_id)+"/feed?&access_token="+self.access_token+"&limit=100")
         posts = []
@@ -45,6 +58,13 @@ class GetTopPostTime():
         return posts
 
     def get_stats_for_each_post(self,result_posts):
+        """
+        Obtain the stats for a list of posts.
+
+        Args:
+            self: (todo): write your description
+            result_posts: (str): write your description
+        """
         max_count,time = 0,0
         top_posts,top_posts_ids = [],[]
         index = 0
@@ -85,6 +105,13 @@ class GetTopPostTime():
         return output
 
     def get_full_details_of_ids(self,ids):
+        """
+        A method to get details about all posts.
+
+        Args:
+            self: (todo): write your description
+            ids: (list): write your description
+        """
         top_posts = []
         for post_id in ids:
             post_dictionary = {}
@@ -120,6 +147,12 @@ class GetTopPostTime():
 
 
     def get_result(self):
+        """
+        Returns a list of all posts.
+
+        Args:
+            self: (todo): write your description
+        """
         result = self.get_all_posts_between_range()
         top_time = self.get_stats_for_each_post(result)
         return top_time

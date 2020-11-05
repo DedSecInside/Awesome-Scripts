@@ -31,6 +31,13 @@ class SQLiteSession(MemorySession):
     """
 
     def __init__(self, session_id=None):
+        """
+        Initialize the sqlite database.
+
+        Args:
+            self: (todo): write your description
+            session_id: (str): write your description
+        """
         if sqlite3 is None:
             raise sqlite3_err
 
@@ -112,11 +119,25 @@ class SQLiteSession(MemorySession):
             self.save()
 
     def clone(self, to_instance=None):
+        """
+        Saves todoset to_instance.
+
+        Args:
+            self: (todo): write your description
+            to_instance: (bool): write your description
+        """
         cloned = super().clone(to_instance)
         cloned.save_entities = self.save_entities
         return cloned
 
     def _upgrade_database(self, old):
+        """
+        Upgrade database.
+
+        Args:
+            self: (todo): write your description
+            old: (todo): write your description
+        """
         c = self._cursor()
         if old == 1:
             old += 1
@@ -158,12 +179,28 @@ class SQLiteSession(MemorySession):
 
     @staticmethod
     def _create_table(c, *definitions):
+        """
+        Create all tables.
+
+        Args:
+            c: (str): write your description
+            definitions: (todo): write your description
+        """
         for definition in definitions:
             c.execute('create table {}'.format(definition))
 
     # Data from sessions should be kept as properties
     # not to fetch the database every time we need it
     def set_dc(self, dc_id, server_address, port):
+        """
+        Updates the dcnm table.
+
+        Args:
+            self: (todo): write your description
+            dc_id: (str): write your description
+            server_address: (todo): write your description
+            port: (int): write your description
+        """
         super().set_dc(dc_id, server_address, port)
         self._update_session_table()
 
@@ -176,15 +213,35 @@ class SQLiteSession(MemorySession):
 
     @MemorySession.auth_key.setter
     def auth_key(self, value):
+        """
+        Set the session key.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         self._auth_key = value
         self._update_session_table()
 
     @MemorySession.takeout_id.setter
     def takeout_id(self, value):
+        """
+        Take a value of the session.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         self._takeout_id = value
         self._update_session_table()
 
     def _update_session_table(self):
+        """
+        Updates the session table.
+
+        Args:
+            self: (todo): write your description
+        """
         c = self._cursor()
         # While we can save multiple rows into the sessions table
         # currently we only want to keep ONE as the tables don't
@@ -202,6 +259,13 @@ class SQLiteSession(MemorySession):
         c.close()
 
     def get_update_state(self, entity_id):
+        """
+        Get the state of a specific entity.
+
+        Args:
+            self: (todo): write your description
+            entity_id: (str): write your description
+        """
         row = self._execute('select pts, qts, date, seq from update_state '
                             'where id = ?', entity_id)
         if row:
@@ -211,6 +275,14 @@ class SQLiteSession(MemorySession):
             return types.updates.State(pts, qts, date, seq, unread_count=0)
 
     def set_update_state(self, entity_id, state):
+        """
+        Set the state of a simulation.
+
+        Args:
+            self: (todo): write your description
+            entity_id: (str): write your description
+            state: (todo): write your description
+        """
         self._execute('insert or replace into update_state values (?,?,?,?,?)',
                       entity_id, state.pts, state.qts,
                       state.date.timestamp(), state.seq)
@@ -290,10 +362,24 @@ class SQLiteSession(MemorySession):
             c.close()
 
     def get_entity_rows_by_phone(self, phone):
+        """
+        Get all rows for a specific phone number.
+
+        Args:
+            self: (todo): write your description
+            phone: (str): write your description
+        """
         return self._execute(
             'select id, hash from entities where phone = ?', phone)
 
     def get_entity_rows_by_username(self, username):
+        """
+        Get rows by username.
+
+        Args:
+            self: (todo): write your description
+            username: (str): write your description
+        """
         c = self._cursor()
         try:
             results = c.execute(
@@ -315,10 +401,25 @@ class SQLiteSession(MemorySession):
             c.close()
 
     def get_entity_rows_by_name(self, name):
+        """
+        Get all rows by name.
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+        """
         return self._execute(
             'select id, hash from entities where name = ?', name)
 
     def get_entity_rows_by_id(self, id, exact=True):
+        """
+        Returns an entity by its id.
+
+        Args:
+            self: (todo): write your description
+            id: (str): write your description
+            exact: (todo): write your description
+        """
         if exact:
             return self._execute(
                 'select id, hash from entities where id = ?', id)
@@ -333,6 +434,15 @@ class SQLiteSession(MemorySession):
     # File processing
 
     def get_file(self, md5_digest, file_size, cls):
+        """
+        Returns the md5 hash of the file.
+
+        Args:
+            self: (todo): write your description
+            md5_digest: (str): write your description
+            file_size: (int): write your description
+            cls: (str): write your description
+        """
         row = self._execute(
             'select id, hash from sent_files '
             'where md5_digest = ? and file_size = ? and type = ?',
@@ -343,6 +453,15 @@ class SQLiteSession(MemorySession):
             return cls(row[0], row[1])
 
     def cache_file(self, md5_digest, file_size, instance):
+        """
+        Cache the md5
+
+        Args:
+            self: (todo): write your description
+            md5_digest: (str): write your description
+            file_size: (int): write your description
+            instance: (todo): write your description
+        """
         if not isinstance(instance, (InputDocument, InputPhoto)):
             raise TypeError('Cannot cache %s instance' % type(instance))
 

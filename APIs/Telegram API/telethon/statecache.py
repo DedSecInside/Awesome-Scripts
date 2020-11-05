@@ -9,6 +9,11 @@ _has_channel_id = []
 
 # TODO EntityCache does the same. Reuse?
 def _fill():
+    """
+    Fill the signature for the given types.
+
+    Args:
+    """
     for name in dir(types):
         update = getattr(types, name)
         if getattr(update, 'SUBCLASS_OF_ID', None) == 0x9f89304e:
@@ -31,6 +36,14 @@ class StateCache:
     In-memory update state cache, defaultdict-like behaviour.
     """
     def __init__(self, initial, loggers):
+        """
+        Initialize the initial date.
+
+        Args:
+            self: (todo): write your description
+            initial: (todo): write your description
+            loggers: (todo): write your description
+        """
         # We only care about the pts and the date. By using a tuple which
         # is lightweight and immutable we can easily copy them around to
         # each update in case they need to fetch missing entities.
@@ -41,6 +54,12 @@ class StateCache:
             self._pts_date = None, None
 
     def reset(self):
+        """
+        Reset the state.
+
+        Args:
+            self: (todo): write your description
+        """
         self.__dict__.clear()
         self._pts_date = None, None
 
@@ -158,6 +177,14 @@ class StateCache:
             return self.__dict__.get(item)
 
     def __setitem__(self, where, value):
+        """
+        Sets the value for the given where clause
+
+        Args:
+            self: (todo): write your description
+            where: (todo): write your description
+            value: (str): write your description
+        """
         if where is None:
             self._pts_date = value
         else:

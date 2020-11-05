@@ -25,6 +25,15 @@ class Draft:
             The message ID that the draft will reply to.
     """
     def __init__(self, client, entity, draft):
+        """
+        Initialize this message.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            entity: (todo): write your description
+            draft: (todo): write your description
+        """
         self._client = client
         self._peer = get_peer(entity)
         self._entity = entity
@@ -169,6 +178,12 @@ class Draft:
         return await self.set_message(text='')
 
     def to_dict(self):
+        """
+        Convert the message.
+
+        Args:
+            self: (todo): write your description
+        """
         try:
             entity = self.entity
         except RPCError as e:
@@ -184,7 +199,19 @@ class Draft:
         }
 
     def __str__(self):
+        """
+        Return a human - formatted string
+
+        Args:
+            self: (todo): write your description
+        """
         return TLObject.pretty_format(self.to_dict())
 
     def stringify(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return TLObject.pretty_format(self.to_dict(), indent=0)

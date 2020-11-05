@@ -12,6 +12,16 @@ class Usability(enum.Enum):
 
 class MethodInfo:
     def __init__(self, name, usability, errors, friendly):
+        """
+        Initialize a module.
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+            usability: (str): write your description
+            errors: (str): write your description
+            friendly: (todo): write your description
+        """
         self.name = name
         self.errors = errors
         self.friendly = friendly

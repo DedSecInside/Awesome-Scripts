@@ -6,6 +6,14 @@ import matplotlib.pyplot as plt
 
 
 def apply_colormap(img_path, colors, output):
+    """
+    Apply a colormap to an rgb image.
+
+    Args:
+        img_path: (str): write your description
+        colors: (str): write your description
+        output: (todo): write your description
+    """
     input_img = cv2.imread(img_path, 0)
 
     rgb_colors = []
@@ -19,6 +27,12 @@ def apply_colormap(img_path, colors, output):
 
 
 def hex_to_rgb(h):
+    """
+    Convert hexadecimal to rgb.
+
+    Args:
+        h: (str): write your description
+    """
     h = h.lstrip('#')
     return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
 
@@ -48,6 +62,13 @@ def make_cmap(colors):
 
 
 def apply_custom_colormap(source_image, cmap):
+    """
+    Apply color colors to image_image.
+
+    Args:
+        source_image: (todo): write your description
+        cmap: (todo): write your description
+    """
     assert source_image.dtype == np.uint8, 'must be np.uint8 image'
     # Squeeze image to turn it to black and white
     if source_image.ndim == 3:

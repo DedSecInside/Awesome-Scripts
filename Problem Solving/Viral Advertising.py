@@ -8,6 +8,12 @@ import sys
 
 # Complete the viralAdvertising function below.
 def viralAdvertising(n):
+    """
+    Calculate the number of viral.
+
+    Args:
+        n: (todo): write your description
+    """
 
     count = 0
     start = 5

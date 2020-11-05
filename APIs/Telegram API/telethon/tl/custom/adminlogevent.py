@@ -24,6 +24,14 @@ class AdminLogEvent:
             Input variant of `user`.
     """
     def __init__(self, original, entities):
+        """
+        Initialize input entities to the input entities.
+
+        Args:
+            self: (todo): write your description
+            original: (todo): write your description
+            entities: (dict): write your description
+        """
         self.original = original
         self.entities = entities
         self.user = entities[original.user_id]
@@ -328,7 +336,19 @@ class AdminLogEvent:
                           types.ChannelAdminLogEventActionStopPoll)
 
     def __str__(self):
+        """
+        Returns the string representation of this node.
+
+        Args:
+            self: (todo): write your description
+        """
         return str(self.original)
 
     def stringify(self):
+        """
+        : return : attribute
+
+        Args:
+            self: (todo): write your description
+        """
         return self.original.stringify()

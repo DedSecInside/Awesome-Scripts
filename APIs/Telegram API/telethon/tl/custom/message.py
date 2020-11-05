@@ -166,6 +166,39 @@ class Message(ChatGetter, SenderGetter, TLObject, abc.ABC):
 
             # For MessageAction (mandatory)
             action=None):
+        """
+        Create a new message.
+
+        Args:
+            self: (todo): write your description
+            id: (str): write your description
+            peer_id: (str): write your description
+            date: (todo): write your description
+            out: (str): write your description
+            mentioned: (todo): write your description
+            media_unread: (todo): write your description
+            silent: (bool): write your description
+            post: (int): write your description
+            from_id: (str): write your description
+            reply_to: (todo): write your description
+            message: (str): write your description
+            fwd_from: (float): write your description
+            via_bot_id: (str): write your description
+            media: (todo): write your description
+            reply_markup: (str): write your description
+            entities: (dict): write your description
+            views: (bool): write your description
+            edit_date: (todo): write your description
+            post_author: (str): write your description
+            grouped_id: (str): write your description
+            from_scheduled: (todo): write your description
+            legacy: (float): write your description
+            edit_hide: (str): write your description
+            restriction_reason: (str): write your description
+            forwards: (todo): write your description
+            replies: (todo): write your description
+            action: (todo): write your description
+        """
         # Common properties to all messages
         self.id = id
         self.peer_id = peer_id
@@ -301,6 +334,13 @@ class Message(ChatGetter, SenderGetter, TLObject, abc.ABC):
 
     @text.setter
     def text(self, value):
+        """
+        Set the message.
+
+        Args:
+            self: (todo): write your description
+            value: (str): write your description
+        """
         self._text = value
         if self._client and self._client.parse_mode:
             self.message, self.entities = self._client.parse_mode.parse(value)
@@ -320,6 +360,13 @@ class Message(ChatGetter, SenderGetter, TLObject, abc.ABC):
 
     @raw_text.setter
     def raw_text(self, value):
+        """
+        Set text
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         self.message = value
         self.entities = []
         self._text = None
@@ -914,6 +961,11 @@ class Message(ChatGetter, SenderGetter, TLObject, abc.ABC):
         # Finding the desired poll options and sending them
         if self.poll is not None:
             def find_options():
+                """
+                Return a list.
+
+                Args:
+                """
                 answers = self.poll.poll.answers
                 if i is not None:
                     if utils.is_list_like(i):
@@ -951,6 +1003,11 @@ class Message(ChatGetter, SenderGetter, TLObject, abc.ABC):
             return  # Accessing the property sets self._buttons[_flat]
 
         def find_button():
+            """
+            Finds a button with the given text.
+
+            Args:
+            """
             nonlocal i
             if text is not None:
                 if callable(text):
@@ -1034,6 +1091,12 @@ class Message(ChatGetter, SenderGetter, TLObject, abc.ABC):
         self._action_entities = msg._action_entities
 
     async def _refetch_sender(self):
+          """
+          Refetch the sender sender.
+
+          Args:
+              self: (todo): write your description
+          """
         await self._reload_message()
 
     def _set_buttons(self, chat, bot):

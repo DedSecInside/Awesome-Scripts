@@ -29,10 +29,23 @@ class TempWorkDir:
        while within the 'with' block.
     """
     def __init__(self, new=None):
+        """
+        Initialize the file.
+
+        Args:
+            self: (todo): write your description
+            new: (list): write your description
+        """
         self.original = None
         self.new = new or str(Path(__file__).parent.resolve())
 
     def __enter__(self):
+        """
+        Create a new directory.
+
+        Args:
+            self: (todo): write your description
+        """
         # os.chdir does not work with Path in Python 3.5.x
         self.original = str(Path('.').resolve())
         os.makedirs(self.new, exist_ok=True)
@@ -40,6 +53,12 @@ class TempWorkDir:
         return self
 
     def __exit__(self, *args):
+        """
+        Exit the current working directory.
+
+        Args:
+            self: (todo): write your description
+        """
         os.chdir(self.original)
 
 
@@ -63,6 +82,13 @@ DOCS_OUT = Path('docs')
 
 
 def generate(which, action='gen'):
+    """
+    Generate the documentation file.
+
+    Args:
+        which: (todo): write your description
+        action: (str): write your description
+    """
     from telethon_generator.parsers import\
         parse_errors, parse_methods, parse_tl, find_layer
 
@@ -127,6 +153,13 @@ def generate(which, action='gen'):
                     file.unlink()
         else:
             def gen_json(fin, fout):
+                """
+                Generate json - formatted string
+
+                Args:
+                    fin: (todo): write your description
+                    fout: (str): write your description
+                """
                 meths = []
                 constructors = []
                 for tl in parse_tl(fin, layer):
@@ -151,6 +184,12 @@ def generate(which, action='gen'):
 
 
 def main(argv):
+    """
+    Main function.
+
+    Args:
+        argv: (str): write your description
+    """
     if len(argv) >= 2 and argv[1] in ('gen', 'clean'):
         generate(argv[2:], argv[1])
 

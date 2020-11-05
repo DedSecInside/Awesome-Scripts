@@ -3,6 +3,12 @@ import random
 import sys
 
 def roller(string):
+    """
+    Generate a string.
+
+    Args:
+        string: (str): write your description
+    """
     plus_or_minus = None
     modifier = 0
     d_index = string.find('d')

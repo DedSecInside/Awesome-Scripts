@@ -8,6 +8,13 @@ class AbridgedPacketCodec(PacketCodec):
     obfuscate_tag = b'\xef\xef\xef\xef'
 
     def encode_packet(self, data):
+        """
+        Encode the given packet.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         length = len(data) >> 2
         if length < 127:
             length = struct.pack('B', length)
@@ -16,6 +23,13 @@ class AbridgedPacketCodec(PacketCodec):
         return length + data
 
     async def read_packet(self, reader):
+          """
+          Reads a packet.
+
+          Args:
+              self: (todo): write your description
+              reader: (todo): write your description
+          """
         length = struct.unpack('<B', await reader.readexactly(1))[0]
         if length >= 127:
             length = struct.unpack(

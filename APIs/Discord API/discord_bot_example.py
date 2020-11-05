@@ -14,6 +14,11 @@ bot = commands.Bot(command_prefix=PREFIX)
 
 @bot.event
 async def on_ready():
+      """
+      Prints on_ready.
+
+      Args:
+      """
 	print('Logged in!')
 	print(f'Name: {bot.user.name}')
 	print(f'ID: {bot.user.id}')
@@ -21,6 +26,12 @@ async def on_ready():
 
 @bot.command()
 async def ping(ctx):
+      """
+      Send ping message.
+
+      Args:
+          ctx: (todo): write your description
+      """
 	await ctx.send(f'pong! `{int(bot.latency * 1000)}ms`')
 
 

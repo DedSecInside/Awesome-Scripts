@@ -235,6 +235,12 @@ class DocsWriter:
             self.write('</tr>')
 
     def end_table(self):
+        """
+        End the end of the table.
+
+        Args:
+            self: (todo): write your description
+        """
         # If there was any column left, finish it before closing the table
         if self.table_columns_left:
             self.write('</tr>')
@@ -253,6 +259,14 @@ class DocsWriter:
                    .format(text_to_copy, text))
 
     def add_script(self, src='', path=None):
+        """
+        Add a script to the list.
+
+        Args:
+            self: (todo): write your description
+            src: (str): write your description
+            path: (str): write your description
+        """
         if path:
             self._script += '<script src="{}"></script>'.format(
                 self._rel(path))
@@ -286,10 +300,25 @@ class DocsWriter:
 
     # With block
     def __enter__(self):
+        """
+        Enter the file.
+
+        Args:
+            self: (todo): write your description
+        """
         # Sanity check
         self.filename.parent.mkdir(parents=True, exist_ok=True)
         self.handle = self.filename.open('w', encoding='utf-8')
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        """
+        Exit the given exc_type is raised.
+
+        Args:
+            self: (todo): write your description
+            exc_type: (todo): write your description
+            exc_val: (todo): write your description
+            exc_tb: (todo): write your description
+        """
         self.handle.close()

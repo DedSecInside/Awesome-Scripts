@@ -8,6 +8,12 @@ def _admin_prop(field_name, doc):
     has a specific permission being an admin of a channel.
     """
     def fget(self):
+        """
+        Returns true if_admin field
+
+        Args:
+            self: (todo): write your description
+        """
         if not self.is_admin:
             return False
         if self.is_chat:
@@ -36,6 +42,14 @@ class ParticipantPermissions:
                 "this user is an administrator"
     """
     def __init__(self, participant, chat: bool):
+        """
+        Initialize a chat.
+
+        Args:
+            self: (todo): write your description
+            participant: (todo): write your description
+            chat: (todo): write your description
+        """
         self.participant = participant
         self.is_chat = chat
 

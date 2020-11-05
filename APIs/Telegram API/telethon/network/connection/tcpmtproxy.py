@@ -20,6 +20,13 @@ class MTProxyIO:
     header = None
 
     def __init__(self, connection):
+        """
+        Initialize the connection.
+
+        Args:
+            self: (todo): write your description
+            connection: (todo): write your description
+        """
         self._reader = connection._reader
         self._writer = connection._writer
 
@@ -30,6 +37,14 @@ class MTProxyIO:
 
     @staticmethod
     def init_header(secret, dc_id, packet_codec):
+        """
+        Generate a random header.
+
+        Args:
+            secret: (str): write your description
+            dc_id: (str): write your description
+            packet_codec: (str): write your description
+        """
         # Validate
         is_dd = (len(secret) == 17) and (secret[0] == 0xDD)
         is_rand_codec = issubclass(
@@ -73,9 +88,23 @@ class MTProxyIO:
         return (random, encryptor, decryptor)
 
     async def readexactly(self, n):
+          """
+          Reade to the n bytes.
+
+          Args:
+              self: (todo): write your description
+              n: (todo): write your description
+          """
         return self._decrypt.encrypt(await self._reader.readexactly(n))
 
     def write(self, data):
+        """
+        Encrypts the given writer.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         self._writer.write(self._encrypt.encrypt(data))
 
 
@@ -96,6 +125,17 @@ class TcpMTProxy(ObfuscatedConnection):
 
     # noinspection PyUnusedLocal
     def __init__(self, ip, port, dc_id, *, loggers, proxy=None):
+        """
+        Initialize the proxy
+
+        Args:
+            self: (todo): write your description
+            ip: (str): write your description
+            port: (int): write your description
+            dc_id: (str): write your description
+            loggers: (todo): write your description
+            proxy: (str): write your description
+        """
         # connect to proxy's host and port instead of telegram's ones
         proxy_host, proxy_port = self.address_info(proxy)
         self._secret = bytes.fromhex(proxy[2])
@@ -103,6 +143,14 @@ class TcpMTProxy(ObfuscatedConnection):
             proxy_host, proxy_port, dc_id, loggers=loggers)
 
     async def _connect(self, timeout=None, ssl=None):
+          """
+          Establish a connection.
+
+          Args:
+              self: (todo): write your description
+              timeout: (int): write your description
+              ssl: (todo): write your description
+          """
         await super()._connect(timeout=timeout, ssl=ssl)
 
         # Wait for EOF for 2 seconds (or if _wait_for_data's definition
@@ -126,6 +174,12 @@ class TcpMTProxy(ObfuscatedConnection):
 
     @staticmethod
     def address_info(proxy_info):
+        """
+        Return the proxy info. proxy.
+
+        Args:
+            proxy_info: (todo): write your description
+        """
         if proxy_info is None:
             raise ValueError("No proxy info specified for MTProxy connection")
         return proxy_info[:2]

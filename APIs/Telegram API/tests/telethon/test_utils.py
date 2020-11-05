@@ -10,6 +10,11 @@ from telethon.tl.types import (
 
 
 def test_game_input_media_memory_error():
+    """
+    Test if the input input for a game.
+
+    Args:
+    """
     large_long = 2**62
     media = MessageMediaGame(Game(
         id=large_long,  # <- key to trigger `MemoryError`
@@ -24,12 +29,24 @@ def test_game_input_media_memory_error():
 
 
 def test_private_get_extension():
+    """
+    Get the private extension of a private key.
+
+    Args:
+    """
     # Positive cases
     png_header = bytes.fromhex('89 50 4e 47 0d 0a 1a 0a  00 00 00 0d 49 48 44 52')
     png_buffer = io.BytesIO(png_header)
 
     class CustomFd:
         def __init__(self, name):
+            """
+            Sets the name.
+
+            Args:
+                self: (todo): write your description
+                name: (str): write your description
+            """
             self.name = name
 
     assert utils._get_extension('foo.bar.baz') == '.baz'

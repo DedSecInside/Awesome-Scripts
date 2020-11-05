@@ -34,6 +34,15 @@ def _get_class_name(error_code):
 
 class Error:
     def __init__(self, codes, name, description):
+        """
+        Initialize the interface.
+
+        Args:
+            self: (todo): write your description
+            codes: (array): write your description
+            name: (str): write your description
+            description: (str): write your description
+        """
         # TODO Some errors have the same name but different integer codes
         # Should these be split into different files or doesn't really matter?
         # Telegram isn't exactly consistent with returned errors anyway.

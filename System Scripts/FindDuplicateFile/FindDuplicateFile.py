@@ -6,6 +6,13 @@
 import os
 
 def FindDuplicateFile(f1, f2):
+    """
+    Search files in f1.
+
+    Args:
+        f1: (todo): write your description
+        f2: (todo): write your description
+    """
     f1content = os.listdir(f1)
     f2content = os.listdir(f2)
 

@@ -2,20 +2,45 @@ import requests
 
 
 def get_temperature(json_data):
+    """
+    : param json
+
+    Args:
+        json_data: (todo): write your description
+    """
     temp_in_celcius = json_data['main']['temp']
     return temp_in_celcius
 
 def get_weather_type(json_data):
+    """
+    Return weather type
+
+    Args:
+        json_data: (todo): write your description
+    """
     weather_type = json_data['weather'][0]['description']
     return weather_type
 
 def get_wind_speed(json_data):
+    """
+    Retrieve wind speed.
+
+    Args:
+        json_data: (str): write your description
+    """
     wind_speed = json_data['wind']['speed']
     return wind_speed
 
 
 
 def get_weather_data(json_data, city):
+    """
+    Return weather data.
+
+    Args:
+        json_data: (todo): write your description
+        city: (str): write your description
+    """
     description_of_weather = json_data['weather'][0]['description']
     weather_type = get_weather_type(json_data)
     temperature = get_temperature(json_data)
@@ -25,6 +50,11 @@ def get_weather_data(json_data, city):
 
 
 def main():
+    """
+    Main function.
+
+    Args:
+    """
     api_address = 'https://api.openweathermap.org/data/2.5/weather?q=Sydney,au&appid=a10fd8a212e47edf8d946f26fb4cdef8&q='
     city = input("City Name : ")
     units_format = "&units=metric"

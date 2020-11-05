@@ -17,6 +17,12 @@ MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
                     '(':'-.--.', ')':'-.--.-'} 
 # message encryption function
 def encrypt(message):
+    """
+    Encrypts a message
+
+    Args:
+        message: (str): write your description
+    """
     code = ''
     for letter in message:
         if letter != ' ':
@@ -27,6 +33,12 @@ def encrypt(message):
 
 # message decryption function
 def decrypt(code):
+    """
+    Decrypts a string.
+
+    Args:
+        code: (str): write your description
+    """
     code = code.strip()
     code+= ' '
     decipher = ''

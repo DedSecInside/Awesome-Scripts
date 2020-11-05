@@ -11,6 +11,16 @@ class ChatGetter(abc.ABC):
     methods.
     """
     def __init__(self, chat_peer=None, *, input_chat=None, chat=None, broadcast=None):
+        """
+        Initialize the chat.
+
+        Args:
+            self: (todo): write your description
+            chat_peer: (todo): write your description
+            input_chat: (todo): write your description
+            chat: (todo): write your description
+            broadcast: (bool): write your description
+        """
         self._chat_peer = chat_peer
         self._input_chat = input_chat
         self._chat = chat

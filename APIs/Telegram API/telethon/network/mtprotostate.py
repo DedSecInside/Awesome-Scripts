@@ -35,6 +35,14 @@ class MTProtoState:
     authentication process, at which point the `MTProtoPlainSender` is better.
     """
     def __init__(self, auth_key, loggers):
+        """
+        Reset the session.
+
+        Args:
+            self: (todo): write your description
+            auth_key: (str): write your description
+            loggers: (todo): write your description
+        """
         self.auth_key = auth_key
         self._log = loggers[__name__]
         self.time_offset = 0

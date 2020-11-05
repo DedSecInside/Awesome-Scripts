@@ -18,6 +18,12 @@ class UpdateMethods:
     # region Public methods
 
     async def _run_until_disconnected(self: 'TelegramClient'):
+          """
+          Disconnects a request.
+
+          Args:
+              self: (todo): write your description
+          """
         try:
             # Make a high-level request to notify that we want updates
             await self(functions.updates.GetStateRequest())
@@ -94,6 +100,12 @@ class UpdateMethods:
                     ...
         """
         def decorator(f):
+            """
+            Decorator to register an event handler.
+
+            Args:
+                f: (array): write your description
+            """
             self.add_event_handler(f, event)
             return f
 
@@ -285,6 +297,13 @@ class UpdateMethods:
     # the order that the updates arrive in to update the pts and date to
     # be always-increasing. There is also no need to make this async.
     def _handle_update(self: 'TelegramClient', update):
+        """
+        Handle incoming entities.
+
+        Args:
+            self: (todo): write your description
+            update: (todo): write your description
+        """
         self.session.process_entities(update)
         self._entity_cache.add(update)
 
@@ -301,6 +320,15 @@ class UpdateMethods:
         self._state_cache.update(update)
 
     def _process_update(self: 'TelegramClient', update, others, entities=None):
+        """
+        Process the update of the queue.
+
+        Args:
+            self: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            entities: (todo): write your description
+        """
         update._entities = entities or {}
 
         # This part is somewhat hot so we don't bother patching
@@ -321,6 +349,12 @@ class UpdateMethods:
         self._state_cache.update(update)
 
     async def _update_loop(self: 'TelegramClient'):
+          """
+          Updates the queue.
+
+          Args:
+              self: (todo): write your description
+          """
         # Pings' ID don't really need to be secure, just "random"
         rnd = lambda: random.randrange(-2**63, 2**63)
         while self.is_connected():
@@ -375,12 +409,28 @@ class UpdateMethods:
                     return
 
     async def _dispatch_queue_updates(self: 'TelegramClient'):
+          """
+          Dispatches all the updates to the queue.
+
+          Args:
+              self: (todo): write your description
+          """
         while not self._updates_queue.empty():
             await self._dispatch_update(*self._updates_queue.get_nowait())
 
         self._dispatching_updates_queue.clear()
 
     async def _dispatch_update(self: 'TelegramClient', update, others, channel_id, pts_date):
+          """
+          Dispatches for the given entity.
+
+          Args:
+              self: (todo): write your description
+              update: (todo): write your description
+              others: (todo): write your description
+              channel_id: (str): write your description
+              pts_date: (todo): write your description
+          """
         if not self._entity_cache.ensure_cached(update):
             # We could add a lock to not fetch the same pts twice if we are
             # already fetching it. However this does not happen in practice,
@@ -566,6 +616,12 @@ class UpdateMethods:
             })
 
     async def _handle_auto_reconnect(self: 'TelegramClient'):
+          """
+          Handle auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto - auto auto - auto - auto - auto - auto
+
+          Args:
+              self: (todo): write your description
+          """
         # TODO Catch-up
         # For now we make a high-level request to let Telegram
         # know we are still interested in receiving more updates.
@@ -616,11 +672,27 @@ class EventBuilderDict:
     Helper "dictionary" to return events from types and cache them.
     """
     def __init__(self, client: 'TelegramClient', update, others):
+        """
+        Initialize the client.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+        """
         self.client = client
         self.update = update
         self.others = others
 
     def __getitem__(self, builder):
+        """
+        Return an item from the event.
+
+        Args:
+            self: (todo): write your description
+            builder: (todo): write your description
+        """
         try:
             return self.__dict__[builder]
         except KeyError:

@@ -13,6 +13,12 @@ N = input("Number of files you want to list?\n")
 files = os.listdir(directory)
 
 def list_N_files(all_files):
+    """
+    Lists all files
+
+    Args:
+        all_files: (str): write your description
+    """
 	print "\n".join(all_files[:N])
 
 if option==1:

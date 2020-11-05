@@ -10,6 +10,12 @@ from telethon.crypto import rsa
 def server_key_fp():
     """Factory to return a key, old if so chosen."""
     def _server_key_fp(old: bool):
+        """
+        Returns the key fp.
+
+        Args:
+            old: (str): write your description
+        """
         for fp, data in rsa._server_keys.items():
             _, old_key = data
             if old_key == old:
@@ -29,6 +35,12 @@ def test_encryption_old_key(server_key_fp):
 
 
 def test_encryption_allowed_old_key(server_key_fp):
+    """
+    Encrypt the encryption key with the encryption key.
+
+    Args:
+        server_key_fp: (str): write your description
+    """
     data = rsa.encrypt(server_key_fp(old=True), b"testdata", use_old=True)
     # We can't verify the data is actually valid because we don't have
     # the decryption keys
@@ -36,6 +48,12 @@ def test_encryption_allowed_old_key(server_key_fp):
 
 
 def test_encryption_current_key(server_key_fp):
+    """
+    Encrypts the encryption key for the encryption key
+
+    Args:
+        server_key_fp: (str): write your description
+    """
     data = rsa.encrypt(server_key_fp(old=False), b"testdata")
     # We can't verify the data is actually valid because we don't have
     # the decryption keys

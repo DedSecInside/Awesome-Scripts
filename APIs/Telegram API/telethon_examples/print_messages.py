@@ -8,6 +8,15 @@ from telethon import TelegramClient, events, utils
 
 
 def get_env(name, message, cast=str):
+    """
+    Get an environment variable.
+
+    Args:
+        name: (str): write your description
+        message: (str): write your description
+        cast: (todo): write your description
+        str: (str): write your description
+    """
     if name in os.environ:
         return os.environ[name]
     while True:
@@ -34,6 +43,12 @@ client = TelegramClient(session, api_id, api_hash, proxy=proxy).start()
 # "(?i)" makes it case-insensitive, and | separates "options".
 @client.on(events.NewMessage(pattern=r'(?i).*\b(hello|hi)\b'))
 async def handler(event):
+      """
+      Handle an event handler.
+
+      Args:
+          event: (todo): write your description
+      """
     sender = await event.get_sender()
     name = utils.get_display_name(sender)
     print(name, 'said', event.text, '!')

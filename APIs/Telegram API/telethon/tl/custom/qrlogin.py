@@ -14,6 +14,14 @@ class QRLogin:
     and while it's being shown, call `wait`.
     """
     def __init__(self, client, ignored_ids):
+        """
+        Initialize the hash.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            ignored_ids: (str): write your description
+        """
         self._client = client
         self._request = functions.auth.ExportLoginTokenRequest(
             self._client.api_id, self._client.api_hash, ignored_ids)
@@ -93,6 +101,12 @@ class QRLogin:
         event = asyncio.Event()
 
         async def handler(_update):
+              """
+              Update the event.
+
+              Args:
+                  _update: (todo): write your description
+              """
             event.set()
 
         self._client.add_event_handler(handler, events.Raw(types.UpdateLoginToken))
