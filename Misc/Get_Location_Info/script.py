@@ -10,6 +10,11 @@ import requests
 
 
 def getLocationInfo():
+    """
+    Returns the location information
+
+    Args:
+    """
     try:
         response = requests.get('http://ip-api.com/json')
         return response.json()
@@ -19,6 +24,11 @@ def getLocationInfo():
 
 
 def main():
+    """
+    Main function.
+
+    Args:
+    """
     print('Fetching your location details based on your isp.')
     data = getLocationInfo()
     print(

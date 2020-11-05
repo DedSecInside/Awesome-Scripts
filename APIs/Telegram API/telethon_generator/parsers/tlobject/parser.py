@@ -36,6 +36,15 @@ AUTH_KEY_TYPES = {
 
 
 def _from_line(line, is_function, method_info, layer):
+    """
+    Parse a line from a line.
+
+    Args:
+        line: (str): write your description
+        is_function: (todo): write your description
+        method_info: (todo): write your description
+        layer: (todo): write your description
+    """
     match = re.match(
         r'^([\w.]+)'                     # 'name'
         r'(?:#([0-9a-fA-F]+))?'          # '#optionalcode'

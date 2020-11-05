@@ -76,6 +76,12 @@ def register(event=None):
         event = Raw()
 
     def decorator(callback):
+        """
+        Decorator to register a callback.
+
+        Args:
+            callback: (todo): write your description
+        """
         handlers = getattr(callback, _HANDLERS_ATTRIBUTE, [])
         handlers.append(event)
         setattr(callback, _HANDLERS_ATTRIBUTE, handlers)

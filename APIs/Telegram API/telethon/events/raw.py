@@ -24,6 +24,14 @@ class Raw(EventBuilder):
                 print(update.stringify())
     """
     def __init__(self, types=None, *, func=None):
+        """
+        Initialize the types.
+
+        Args:
+            self: (todo): write your description
+            types: (todo): write your description
+            func: (callable): write your description
+        """
         super().__init__(func=func)
         if not types:
             self.types = None
@@ -39,13 +47,36 @@ class Raw(EventBuilder):
             self.types = tuple(types)
 
     async def resolve(self, client):
+          """
+          Resolve a client.
+
+          Args:
+              self: (todo): write your description
+              client: (todo): write your description
+          """
         self.resolved = True
 
     @classmethod
     def build(cls, update, others=None, self_id=None):
+        """
+        Builds a new : class based on the server.
+
+        Args:
+            cls: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            self_id: (str): write your description
+        """
         return update
 
     def filter(self, event):
+        """
+        Returns a filter function.
+
+        Args:
+            self: (todo): write your description
+            event: (todo): write your description
+        """
         if not self.types or isinstance(event, self.types):
             if self.func:
                 # Return the result of func directly as it may need to be awaited

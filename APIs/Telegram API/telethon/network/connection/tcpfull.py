@@ -9,10 +9,24 @@ class FullPacketCodec(PacketCodec):
     tag = None
 
     def __init__(self, connection):
+        """
+        Initialize a connection.
+
+        Args:
+            self: (todo): write your description
+            connection: (todo): write your description
+        """
         super().__init__(connection)
         self._send_counter = 0  # Important or Telegram won't reply
 
     def encode_packet(self, data):
+        """
+        Encode a packet.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         # https://core.telegram.org/mtproto#tcp-transport
         # total length, sequence number, packet and checksum (CRC32)
         length = len(data) + 12
@@ -22,6 +36,13 @@ class FullPacketCodec(PacketCodec):
         return data + crc
 
     async def read_packet(self, reader):
+          """
+          Read a single packet.
+
+          Args:
+              self: (todo): write your description
+              reader: (todo): write your description
+          """
         packet_len_seq = await reader.readexactly(8)  # 4 and 4
         packet_len, seq = struct.unpack('<ii', packet_len_seq)
         body = await reader.readexactly(packet_len - 8)

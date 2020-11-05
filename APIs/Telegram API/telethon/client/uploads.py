@@ -26,17 +26,47 @@ if typing.TYPE_CHECKING:
 class _CacheType:
     """Like functools.partial but pretends to be the wrapped class."""
     def __init__(self, cls):
+        """
+        Initialize the class.
+
+        Args:
+            self: (todo): write your description
+            cls: (todo): write your description
+        """
         self._cls = cls
 
     def __call__(self, *args, **kwargs):
+        """
+        Call the callable.
+
+        Args:
+            self: (todo): write your description
+        """
         return self._cls(*args, file_reference=b'', **kwargs)
 
     def __eq__(self, other):
+        """
+        Determine if two values are equal.
+
+        Args:
+            self: (todo): write your description
+            other: (todo): write your description
+        """
         return self._cls == other
 
 
 def _resize_photo_if_needed(
         file, is_image, width=1280, height=1280, background=(255, 255, 255)):
+    """
+    Resize photo to png file.
+
+    Args:
+        file: (str): write your description
+        is_image: (todo): write your description
+        width: (int): write your description
+        height: (int): write your description
+        background: (todo): write your description
+    """
 
     # https://github.com/telegramdesktop/tdesktop/blob/12905f0dcb9d513378e7db11989455a1b764ef75/Telegram/SourceFiles/boxes/photo_crop_box.cpp#L254
     if (not is_image
@@ -640,6 +670,24 @@ class UploadMethods:
             progress_callback=None, attributes=None, thumb=None,
             allow_cache=True, voice_note=False, video_note=False,
             supports_streaming=False, mime_type=None, as_image=None):
+          """
+          Use this method to upload a video to an image.
+
+          Args:
+              self: (todo): write your description
+              file: (str): write your description
+              force_document: (str): write your description
+              file_size: (int): write your description
+              progress_callback: (callable): write your description
+              attributes: (dict): write your description
+              thumb: (todo): write your description
+              allow_cache: (bool): write your description
+              voice_note: (str): write your description
+              video_note: (str): write your description
+              supports_streaming: (str): write your description
+              mime_type: (str): write your description
+              as_image: (str): write your description
+          """
         if not file:
             return None, None, None
 

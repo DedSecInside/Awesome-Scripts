@@ -25,6 +25,11 @@ _has_field = {
 
 
 def _fill():
+    """
+    Fill the parameter fields of the given types.
+
+    Args:
+    """
     for name in dir(types):
         update = getattr(types, name)
         if getattr(update, 'SUBCLASS_OF_ID', None) == 0x9f89304e:

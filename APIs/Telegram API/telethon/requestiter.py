@@ -27,6 +27,16 @@ class RequestIter(abc.ABC):
     `buffer` should be filled in reverse too.
     """
     def __init__(self, client, limit, *, reverse=False, wait_time=None, **kwargs):
+        """
+        Initialize the client.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            limit: (int): write your description
+            reverse: (bool): write your description
+            wait_time: (int): write your description
+        """
         self.client = client
         self.reverse = reverse
         self.wait_time = wait_time
@@ -53,6 +63,12 @@ class RequestIter(abc.ABC):
         """
 
     async def __anext__(self):
+          """
+          Return the next occurrence of the buffer.
+
+          Args:
+              self: (todo): write your description
+          """
         if self.buffer is None:
             self.buffer = []
             if await self._init(**self.kwargs):
@@ -83,12 +99,24 @@ class RequestIter(abc.ABC):
         return result
 
     def __next__(self):
+        """
+        Returns the next completion.
+
+        Args:
+            self: (todo): write your description
+        """
         try:
             return self.client.loop.run_until_complete(self.__anext__())
         except StopAsyncIteration:
             raise StopIteration
 
     def __aiter__(self):
+        """
+        Return the number of the buffer
+
+        Args:
+            self: (todo): write your description
+        """
         self.buffer = None
         self.index = 0
         self.last_load = 0
@@ -96,6 +124,12 @@ class RequestIter(abc.ABC):
         return self
 
     def __iter__(self):
+        """
+        Return an asyncio. client.
+
+        Args:
+            self: (todo): write your description
+        """
         if self.client.loop.is_running():
             raise RuntimeError(
                 'You must use "async for" if the event loop '
@@ -130,5 +164,11 @@ class RequestIter(abc.ABC):
         raise NotImplementedError
 
     def __reversed__(self):
+        """
+        Reverse of the reverse.
+
+        Args:
+            self: (todo): write your description
+        """
         self.reverse = not self.reverse
         return self  # __aiter__ will be called after, too

@@ -21,9 +21,22 @@ class MessageContainer(TLObject):
     MAXIMUM_LENGTH = 100
 
     def __init__(self, messages):
+        """
+        Initialize a message.
+
+        Args:
+            self: (todo): write your description
+            messages: (list): write your description
+        """
         self.messages = messages
 
     def to_dict(self):
+        """
+        Convert this message as a dict.
+
+        Args:
+            self: (todo): write your description
+        """
         return {
             '_': 'MessageContainer',
             'messages':
@@ -34,6 +47,13 @@ class MessageContainer(TLObject):
 
     @classmethod
     def from_reader(cls, reader):
+        """
+        Reads a reader from a reader reader.
+
+        Args:
+            cls: (todo): write your description
+            reader: (todo): write your description
+        """
         # This assumes that .read_* calls are done in the order they appear
         messages = []
         for _ in range(reader.read_int()):

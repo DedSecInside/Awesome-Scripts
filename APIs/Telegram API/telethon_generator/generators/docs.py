@@ -572,6 +572,12 @@ def _write_html_pages(tlobjects, methods, layer, input_res):
     })
 
     def fmt(xs):
+        """
+        Return a string representation of a class.
+
+        Args:
+            xs: (int): write your description
+        """
         zs = {}  # create a dict to hold those which have duplicated keys
         for x in xs:
             zs[x.class_name] = x.class_name in zs
@@ -585,6 +591,13 @@ def _write_html_pages(tlobjects, methods, layer, input_res):
     constructor_names = fmt(cs)
 
     def fmt(xs, formatter):
+        """
+        Format a string with the given formatter.
+
+        Args:
+            xs: (int): write your description
+            formatter: (todo): write your description
+        """
         return ', '.join('"{}"'.format(
             formatter(x)).replace(os.path.sep, '/') for x in xs)
 
@@ -606,6 +619,12 @@ def _write_html_pages(tlobjects, methods, layer, input_res):
 
 
 def _copy_resources(res_dir):
+    """
+    Copy all resources to dirname.
+
+    Args:
+        res_dir: (str): write your description
+    """
     for dirname, files in [('css', ['docs.light.css', 'docs.dark.css']),
                            ('img', ['arrow.svg'])]:
         dirpath = pathlib.Path(dirname)
@@ -644,6 +663,15 @@ def _create_structure(tlobjects):
 
 
 def generate_docs(tlobjects, methods_info, layer, input_res):
+    """
+    Generate documentation.
+
+    Args:
+        tlobjects: (todo): write your description
+        methods_info: (str): write your description
+        layer: (str): write your description
+        input_res: (str): write your description
+    """
     _create_structure(tlobjects)
     _write_html_pages(tlobjects, methods_info, layer, input_res)
     _copy_resources(input_res)

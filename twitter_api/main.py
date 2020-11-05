@@ -42,29 +42,69 @@ label7 = Label( root, text="Follow?")
 E7 = Entry(root, bd =5)
 
 def getE1():
+    """
+    Returns the first element of the first kind of the second.
+
+    Args:
+    """
     return E1.get()
 
 def getE2():
+    """
+    Get the 2 - tuple of two )
+
+    Args:
+    """
     return E2.get()
 
 def getE3():
+    """
+    Returns the e3 3d coefficient
+
+    Args:
+    """
     return E3.get()
 
 
 def getE4():
+    """
+    Returns the e4 value
+
+    Args:
+    """
     return E4.get()
 
 def getE5():
+    """
+    Returns the e5
+
+    Args:
+    """
     return E5.get()
 
 def getE6():
+    """
+    Returns the e6
+
+    Args:
+    """
     return E6.get()
 
 def getE7():
+    """
+    Returns the e7
+
+    Args:
+    """
     return E7.get()
 
 
 def mainFunction():
+    """
+    Main function.
+
+    Args:
+    """
     getE1()
     search = getE1()
     

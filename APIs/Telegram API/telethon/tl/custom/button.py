@@ -36,6 +36,16 @@ class Button:
     the 129.
     """
     def __init__(self, button, *, resize, single_use, selective):
+        """
+        Initialize the button.
+
+        Args:
+            self: (todo): write your description
+            button: (todo): write your description
+            resize: (int): write your description
+            single_use: (todo): write your description
+            selective: (bool): write your description
+        """
         self.button = button
         self.resize = resize
         self.single_use = single_use

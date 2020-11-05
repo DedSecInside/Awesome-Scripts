@@ -45,6 +45,15 @@ class InlineResults(list):
             the text in this object.
     """
     def __init__(self, client, original, *, entity=None):
+        """
+        Initialize the next entity.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            original: (todo): write your description
+            entity: (todo): write your description
+        """
         super().__init__(InlineResult(client, x, original.query_id, entity=entity)
                          for x in original.results)
 
@@ -65,6 +74,13 @@ class InlineResults(list):
         return time.time() < self._valid_until
 
     def _to_str(self, item_function):
+        """
+        Return a string representation of this query.
+
+        Args:
+            self: (todo): write your description
+            item_function: (todo): write your description
+        """
         return ('[{}, query_id={}, cache_time={}, users={}, gallery={}, '
                 'next_offset={}, switch_pm={}]'.format(
             ', '.join(item_function(x) for x in self),
@@ -77,7 +93,19 @@ class InlineResults(list):
         ))
 
     def __str__(self):
+        """
+        Returns the string representation of the object.
+
+        Args:
+            self: (todo): write your description
+        """
         return self._to_str(str)
 
     def __repr__(self):
+        """
+        Return a repr representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return self._to_str(repr)

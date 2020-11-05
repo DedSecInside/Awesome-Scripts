@@ -66,6 +66,15 @@ class EventBuilder(abc.ABC):
                     pass  # code here
     """
     def __init__(self, chats=None, *, blacklist_chats=False, func=None):
+        """
+        Initialize the blacklist.
+
+        Args:
+            self: (todo): write your description
+            chats: (todo): write your description
+            blacklist_chats: (todo): write your description
+            func: (callable): write your description
+        """
         self.chats = chats
         self.blacklist_chats = bool(blacklist_chats)
         self.resolved = False
@@ -100,6 +109,13 @@ class EventBuilder(abc.ABC):
                 self.resolved = True
 
     async def _resolve(self, client):
+          """
+          Resolve this client.
+
+          Args:
+              self: (todo): write your description
+              client: (todo): write your description
+          """
         self.chats = await _into_id_set(client, self.chats)
 
     def filter(self, event):
@@ -141,6 +157,15 @@ class EventCommon(ChatGetter, abc.ABC):
     _event_name = 'Event'
 
     def __init__(self, chat_peer=None, msg_id=None, broadcast=None):
+        """
+        Initialize chat message.
+
+        Args:
+            self: (todo): write your description
+            chat_peer: (todo): write your description
+            msg_id: (todo): write your description
+            broadcast: (bool): write your description
+        """
         super().__init__(chat_peer, broadcast=broadcast)
         self._entities = {}
         self._client = None
@@ -166,12 +191,30 @@ class EventCommon(ChatGetter, abc.ABC):
         return self._client
 
     def __str__(self):
+        """
+        Return a human - formatted string
+
+        Args:
+            self: (todo): write your description
+        """
         return TLObject.pretty_format(self.to_dict())
 
     def stringify(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return TLObject.pretty_format(self.to_dict(), indent=0)
 
     def to_dict(self):
+        """
+        Return a dictionary representation of the event to a dictionary.
+
+        Args:
+            self: (todo): write your description
+        """
         d = {k: v for k, v in self.__dict__.items() if k[0] != '_'}
         d['_'] = self._event_name
         return d

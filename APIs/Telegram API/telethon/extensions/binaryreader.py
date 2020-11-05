@@ -21,6 +21,13 @@ class BinaryReader:
     """
 
     def __init__(self, data):
+        """
+        Initialize the stream.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         self.stream = BytesIO(data)
         self._last = None  # Should come in handy to spot -404 errors
 
@@ -177,9 +184,24 @@ class BinaryReader:
     # region with block
 
     def __enter__(self):
+        """
+        Decor function.
+
+        Args:
+            self: (todo): write your description
+        """
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        """
+        Called when an exception is raised.
+
+        Args:
+            self: (todo): write your description
+            exc_type: (todo): write your description
+            exc_val: (todo): write your description
+            exc_tb: (todo): write your description
+        """
         self.close()
 
     # endregion

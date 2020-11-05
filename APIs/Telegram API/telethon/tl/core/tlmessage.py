@@ -21,11 +21,26 @@ class TLMessage(TLObject):
     SIZE_OVERHEAD = 12
 
     def __init__(self, msg_id, seq_no, obj):
+        """
+        Initialize a message to the message.
+
+        Args:
+            self: (todo): write your description
+            msg_id: (todo): write your description
+            seq_no: (todo): write your description
+            obj: (todo): write your description
+        """
         self.msg_id = msg_id
         self.seq_no = seq_no
         self.obj = obj
 
     def to_dict(self):
+        """
+        Return a dict to a dictionary.
+
+        Args:
+            self: (todo): write your description
+        """
         return {
             '_': 'TLMessage',
             'msg_id': self.msg_id,

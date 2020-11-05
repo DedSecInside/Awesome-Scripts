@@ -37,6 +37,15 @@ class MessageDeleted(EventBuilder):
     """
     @classmethod
     def build(cls, update, others=None, self_id=None):
+        """
+        Creates a new message
+
+        Args:
+            cls: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            self_id: (str): write your description
+        """
         if isinstance(update, types.UpdateDeleteMessages):
             return cls.Event(
                 deleted_ids=update.messages,
@@ -50,6 +59,14 @@ class MessageDeleted(EventBuilder):
 
     class Event(EventCommon):
         def __init__(self, deleted_ids, peer):
+            """
+            Initialize chat
+
+            Args:
+                self: (todo): write your description
+                deleted_ids: (str): write your description
+                peer: (todo): write your description
+            """
             super().__init__(
                 chat_peer=peer, msg_id=(deleted_ids or [0])[0]
             )

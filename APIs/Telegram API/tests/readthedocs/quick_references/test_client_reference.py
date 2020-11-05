@@ -4,6 +4,12 @@ from telethon import TelegramClient
 
 
 def test_all_methods_present(docs_dir):
+    """
+    Determine if all methods existance of the given documentation.
+
+    Args:
+        docs_dir: (str): write your description
+    """
     with (docs_dir / 'quick-references/client-reference.rst').open(encoding='utf-8') as fd:
         present_methods = set(map(str.lstrip, re.findall(r'^ {4}\w+$', fd.read(), re.MULTILINE)))
 

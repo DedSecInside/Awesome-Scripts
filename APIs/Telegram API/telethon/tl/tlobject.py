@@ -10,6 +10,12 @@ _EPOCH = _EPOCH_NAIVE.replace(tzinfo=timezone.utc)
 
 
 def _datetime_to_timestamp(dt):
+    """
+    Convert a datetime object to a datetime object.
+
+    Args:
+        dt: (str): write your description
+    """
     # If no timezone is specified, it is assumed to be in utc zone
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
@@ -19,6 +25,12 @@ def _datetime_to_timestamp(dt):
 
 
 def _json_default(value):
+    """
+    Coerce value ascii.
+
+    Args:
+        value: (str): write your description
+    """
     if isinstance(value, bytes):
         return base64.b64encode(value).decode('ascii')
     elif isinstance(value, datetime):
@@ -135,6 +147,12 @@ class TLObject:
 
     @staticmethod
     def serialize_datetime(dt):
+        """
+        Serialize a datetime object to a string.
+
+        Args:
+            dt: (todo): write your description
+        """
         if not dt and not isinstance(dt, timedelta):
             return b'\0\0\0\0'
 
@@ -154,18 +172,50 @@ class TLObject:
         raise TypeError('Cannot interpret "{}" as a date.'.format(dt))
 
     def __eq__(self, o):
+        """
+        Return true if o is a dict
+
+        Args:
+            self: (todo): write your description
+            o: (todo): write your description
+        """
         return isinstance(o, type(self)) and self.to_dict() == o.to_dict()
 
     def __ne__(self, o):
+        """
+        Convert an object as a dict.
+
+        Args:
+            self: (todo): write your description
+            o: (todo): write your description
+        """
         return not isinstance(o, type(self)) or self.to_dict() != o.to_dict()
 
     def __str__(self):
+        """
+        : return : class : pretty string
+
+        Args:
+            self: (todo): write your description
+        """
         return TLObject.pretty_format(self)
 
     def stringify(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return TLObject.pretty_format(self, indent=0)
 
     def to_dict(self):
+        """
+        Convert a dictionary to a dictionary.
+
+        Args:
+            self: (todo): write your description
+        """
         raise NotImplementedError
 
     def to_json(self, fp=None, default=_json_default, **kwargs):
@@ -186,6 +236,12 @@ class TLObject:
             return json.dumps(d, default=default, **kwargs)
 
     def __bytes__(self):
+        """
+        Returns the byte representation of the buffer.
+
+        Args:
+            self: (todo): write your description
+        """
         try:
             return self._bytes()
         except AttributeError:
@@ -199,10 +255,23 @@ class TLObject:
     # if the wrong type is used (e.g. `int`) we won't try allocating a huge
     # amount of data, which would cause a `MemoryError`.
     def _bytes(self):
+        """
+        Returns the byte string of bytes object.
+
+        Args:
+            self: (todo): write your description
+        """
         raise NotImplementedError
 
     @classmethod
     def from_reader(cls, reader):
+        """
+        Deserialize from a reader.
+
+        Args:
+            cls: (todo): write your description
+            reader: (todo): write your description
+        """
         raise NotImplementedError
 
 
@@ -212,7 +281,21 @@ class TLRequest(TLObject):
     """
     @staticmethod
     def read_result(reader):
+        """
+        Read the result from a result.
+
+        Args:
+            reader: (todo): write your description
+        """
         return reader.tgread_object()
 
     async def resolve(self, client, utils):
+          """
+          Resolve a client.
+
+          Args:
+              self: (todo): write your description
+              client: (todo): write your description
+              utils: (str): write your description
+          """
         pass

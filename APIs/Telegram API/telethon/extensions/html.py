@@ -19,6 +19,12 @@ from ..tl.types import (
 
 # Helpers from markdown.py
 def _add_surrogate(text):
+    """
+    Convert text to the text
+
+    Args:
+        text: (str): write your description
+    """
     return ''.join(
         ''.join(chr(y) for y in struct.unpack('<HH', x.encode('utf-16le')))
         if (0x10000 <= ord(x) <= 0x10FFFF) else x for x in text
@@ -26,11 +32,23 @@ def _add_surrogate(text):
 
 
 def _del_surrogate(text):
+    """
+    Delrogate text.
+
+    Args:
+        text: (str): write your description
+    """
     return text.encode('utf-16', 'surrogatepass').decode('utf-16')
 
 
 class HTMLToTelegramParser(HTMLParser):
     def __init__(self):
+        """
+        Initialize meta data.
+
+        Args:
+            self: (todo): write your description
+        """
         super().__init__()
         self.text = ''
         self.entities = []
@@ -39,6 +57,14 @@ class HTMLToTelegramParser(HTMLParser):
         self._open_tags_meta = deque()
 
     def handle_starttag(self, tag, attrs):
+        """
+        Handle the starttag tags.
+
+        Args:
+            self: (todo): write your description
+            tag: (str): write your description
+            attrs: (dict): write your description
+        """
         self._open_tags.appendleft(tag)
         self._open_tags_meta.appendleft(None)
 
@@ -99,6 +125,13 @@ class HTMLToTelegramParser(HTMLParser):
                 **args)
 
     def handle_data(self, text):
+        """
+        Handle text.
+
+        Args:
+            self: (todo): write your description
+            text: (str): write your description
+        """
         previous_tag = self._open_tags[0] if len(self._open_tags) > 0 else ''
         if previous_tag == 'a':
             url = self._open_tags_meta[0]
@@ -111,6 +144,13 @@ class HTMLToTelegramParser(HTMLParser):
         self.text += text
 
     def handle_endtag(self, tag):
+        """
+        Handle the endtag tag.
+
+        Args:
+            self: (todo): write your description
+            tag: (str): write your description
+        """
         try:
             self._open_tags.popleft()
             self._open_tags_meta.popleft()

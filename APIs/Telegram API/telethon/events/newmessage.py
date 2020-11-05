@@ -59,6 +59,20 @@ class NewMessage(EventBuilder):
     def __init__(self, chats=None, *, blacklist_chats=False, func=None,
                  incoming=None, outgoing=None,
                  from_users=None, forwards=None, pattern=None):
+        """
+        Initialize users.
+
+        Args:
+            self: (todo): write your description
+            chats: (todo): write your description
+            blacklist_chats: (todo): write your description
+            func: (callable): write your description
+            incoming: (todo): write your description
+            outgoing: (todo): write your description
+            from_users: (str): write your description
+            forwards: (todo): write your description
+            pattern: (str): write your description
+        """
         if incoming and outgoing:
             incoming = outgoing = None  # Same as no filter
         elif incoming is not None and outgoing is None:
@@ -90,11 +104,27 @@ class NewMessage(EventBuilder):
         ))
 
     async def _resolve(self, client):
+          """
+          Resolve the client.
+
+          Args:
+              self: (todo): write your description
+              client: (todo): write your description
+          """
         await super()._resolve(client)
         self.from_users = await _into_id_set(client, self.from_users)
 
     @classmethod
     def build(cls, update, others=None, self_id=None):
+        """
+        Build a new message
+
+        Args:
+            cls: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            self_id: (str): write your description
+        """
         if isinstance(update,
                       (types.UpdateNewMessage, types.UpdateNewChannelMessage)):
             if not isinstance(update.message, types.Message):
@@ -144,6 +174,13 @@ class NewMessage(EventBuilder):
         return event
 
     def filter(self, event):
+        """
+        Filters out of the filter.
+
+        Args:
+            self: (todo): write your description
+            event: (todo): write your description
+        """
         if self._no_check:
             return event
 
@@ -201,6 +238,13 @@ class NewMessage(EventBuilder):
                 >>>
         """
         def __init__(self, message):
+            """
+            Initialize a message
+
+            Args:
+                self: (todo): write your description
+                message: (str): write your description
+            """
             self.__dict__['_init'] = False
             super().__init__(chat_peer=message.peer_id,
                              msg_id=message.id, broadcast=bool(message.post))
@@ -209,18 +253,40 @@ class NewMessage(EventBuilder):
             self.message = message
 
         def _set_client(self, client):
+            """
+            Set client.
+
+            Args:
+                self: (todo): write your description
+                client: (todo): write your description
+            """
             super()._set_client(client)
             m = self.message
             m._finish_init(client, self._entities, None)
             self.__dict__['_init'] = True  # No new attributes can be set
 
         def __getattr__(self, item):
+            """
+            Return the value of an attribute.
+
+            Args:
+                self: (todo): write your description
+                item: (str): write your description
+            """
             if item in self.__dict__:
                 return self.__dict__[item]
             else:
                 return getattr(self.message, item)
 
         def __setattr__(self, name, value):
+            """
+            Sets the value of an object.
+
+            Args:
+                self: (todo): write your description
+                name: (str): write your description
+                value: (todo): write your description
+            """
             if not self.__dict__['_init'] or name in self.__dict__:
                 self.__dict__[name] = value
             else:

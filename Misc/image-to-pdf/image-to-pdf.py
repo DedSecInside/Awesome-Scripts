@@ -13,6 +13,11 @@ c = '3'
 
 
 def open_file():
+    """
+    Opens a list in a list.
+
+    Args:
+    """
     # Open images with GUI
 
 	global page
@@ -33,6 +38,11 @@ def open_file():
 
 
 def generate_pdf():
+    """
+    Generate a pdf
+
+    Args:
+    """
     # Generate PDF
 
 	global page

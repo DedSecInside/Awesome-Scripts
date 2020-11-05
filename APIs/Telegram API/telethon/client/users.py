@@ -16,6 +16,17 @@ if typing.TYPE_CHECKING:
 
 
 def _fmt_flood(delay, request, *, early=False, td=datetime.timedelta):
+    """
+    Wrapper for the given delay.
+
+    Args:
+        delay: (todo): write your description
+        request: (todo): write your description
+        early: (todo): write your description
+        td: (todo): write your description
+        datetime: (todo): write your description
+        timedelta: (todo): write your description
+    """
     return (
         'Sleeping%s for %ds (%s) on %s flood wait',
         ' early' if early else '',
@@ -27,9 +38,26 @@ def _fmt_flood(delay, request, *, early=False, td=datetime.timedelta):
 
 class UserMethods:
     async def __call__(self: 'TelegramClient', request, ordered=False):
+          """
+          Make an asyncio.
+
+          Args:
+              self: (todo): write your description
+              request: (todo): write your description
+              ordered: (bool): write your description
+          """
         return await self._call(self._sender, request, ordered=ordered)
 
     async def _call(self: 'TelegramClient', sender, request, ordered=False):
+          """
+          Sends a request.
+
+          Args:
+              self: (todo): write your description
+              sender: (todo): write your description
+              request: (todo): write your description
+              ordered: (bool): write your description
+          """
         requests = (request if utils.is_list_like(request) else (request,))
         for r in requests:
             if not isinstance(r, TLRequest):

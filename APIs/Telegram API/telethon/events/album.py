@@ -33,6 +33,14 @@ class AlbumHack:
     handling code is bad enough as it is.
     """
     def __init__(self, client, event):
+        """
+        Initialize the client.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            event: (todo): write your description
+        """
         # It's probably silly to use a weakref here because this object is
         # very short-lived but might as well try to do "the right thing".
         self._client = weakref.ref(client)
@@ -42,12 +50,25 @@ class AlbumHack:
         client.loop.create_task(self.deliver_event())
 
     def extend(self, messages):
+        """
+        Extend the client.
+
+        Args:
+            self: (todo): write your description
+            messages: (str): write your description
+        """
         client = self._client()
         if client:  # weakref may be dead
             self._event.messages.extend(messages)
             self._due = client.loop.time() + _HACK_DELAY
 
     async def deliver_event(self):
+          """
+          Deliver an event.
+
+          Args:
+              self: (todo): write your description
+          """
         while True:
             client = self._client()
             if client is None:
@@ -93,10 +114,28 @@ class Album(EventBuilder):
 
     def __init__(
             self, chats=None, *, blacklist_chats=False, func=None):
+        """
+        Initialize blacklist.
+
+        Args:
+            self: (todo): write your description
+            chats: (todo): write your description
+            blacklist_chats: (todo): write your description
+            func: (callable): write your description
+        """
         super().__init__(chats, blacklist_chats=blacklist_chats, func=func)
 
     @classmethod
     def build(cls, update, others=None, self_id=None):
+        """
+        Builds a new message object with the specified in - place.
+
+        Args:
+            cls: (todo): write your description
+            update: (todo): write your description
+            others: (todo): write your description
+            self_id: (str): write your description
+        """
         if not others:
             return  # We only care about albums which come inside the same Updates
 
@@ -136,6 +175,13 @@ class Album(EventBuilder):
             ])
 
     def filter(self, event):
+        """
+        Filter out the filter.
+
+        Args:
+            self: (todo): write your description
+            event: (todo): write your description
+        """
         # Albums with less than two messages require a few hacks to work.
         if len(event.messages) > 1:
             return super().filter(event)
@@ -149,6 +195,13 @@ class Album(EventBuilder):
                 The list of messages belonging to the same album.
         """
         def __init__(self, messages):
+            """
+            Initialize chat messages.
+
+            Args:
+                self: (todo): write your description
+                messages: (list): write your description
+            """
             message = messages[0]
             if not message.out and isinstance(message.peer_id, types.PeerUser):
                 # Incoming message (e.g. from a bot) has peer_id=us, and
@@ -164,6 +217,13 @@ class Album(EventBuilder):
             self.messages = messages
 
         def _set_client(self, client):
+            """
+            Sets the group of the entity.
+
+            Args:
+                self: (todo): write your description
+                client: (todo): write your description
+            """
             super()._set_client(client)
             self._sender, self._input_sender = utils._get_entity_pair(
                 self.sender_id, self._entities, client._entity_cache)

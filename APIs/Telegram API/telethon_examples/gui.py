@@ -22,6 +22,15 @@ EDIT = re.compile(r'\.s(.+?[^\\])/(.*)', re.IGNORECASE)
 
 
 def get_env(name, message, cast=str):
+    """
+    Get an environment variable.
+
+    Args:
+        name: (str): write your description
+        message: (str): write your description
+        cast: (todo): write your description
+        str: (str): write your description
+    """
     if name in os.environ:
         return os.environ[name]
     while True:
@@ -40,6 +49,12 @@ API_HASH = get_env('TG_API_HASH', 'Enter your API hash: ')
 
 
 def sanitize_str(string):
+    """
+    Sanitize a string.
+
+    Args:
+        string: (str): write your description
+    """
     return ''.join(x if ord(x) <= 0xffff else
                    '{{{:x}ū}}'.format(ord(x)) for x in string)
 
@@ -51,6 +66,11 @@ def callback(func):
     """
     @functools.wraps(func)
     def wrapped(*args, **kwargs):
+        """
+        Decorator to run a task.
+
+        Args:
+        """
         result = func(*args, **kwargs)
         if inspect.iscoroutine(result):
             aio_loop.create_task(result)
@@ -79,6 +99,13 @@ class App(tkinter.Tk):
     and create widgets with ``self.root`` as parent.
     """
     def __init__(self, client, *args, **kwargs):
+        """
+        Signal interface.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+        """
         super().__init__(*args, **kwargs)
         self.cl = client
         self.me = None
@@ -342,6 +369,12 @@ class App(tkinter.Tk):
 
 
 async def main(interval=0.05):
+      """
+      Main function.
+
+      Args:
+          interval: (int): write your description
+      """
     client = TelegramClient(SESSION, API_ID, API_HASH)
     try:
         await client.connect()

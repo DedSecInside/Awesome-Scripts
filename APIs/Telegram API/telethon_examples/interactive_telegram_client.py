@@ -348,18 +348,40 @@ class InteractiveTelegramClient(TelegramClient):
 
     @staticmethod
     def download_progress_callback(downloaded_bytes, total_bytes):
+        """
+        Download progress. download.
+
+        Args:
+            downloaded_bytes: (str): write your description
+            total_bytes: (todo): write your description
+        """
         InteractiveTelegramClient.print_progress(
             'Downloaded', downloaded_bytes, total_bytes
         )
 
     @staticmethod
     def upload_progress_callback(uploaded_bytes, total_bytes):
+        """
+        Upload progress bar. progress.
+
+        Args:
+            uploaded_bytes: (todo): write your description
+            total_bytes: (todo): write your description
+        """
         InteractiveTelegramClient.print_progress(
             'Uploaded', uploaded_bytes, total_bytes
         )
 
     @staticmethod
     def print_progress(progress_type, downloaded_bytes, total_bytes):
+        """
+        Print progress bar.
+
+        Args:
+            progress_type: (str): write your description
+            downloaded_bytes: (bool): write your description
+            total_bytes: (int): write your description
+        """
         print('{} {} out of {} ({:.2%})'.format(
             progress_type, bytes_to_string(downloaded_bytes),
             bytes_to_string(total_bytes), downloaded_bytes / total_bytes)

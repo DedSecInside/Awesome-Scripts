@@ -23,6 +23,11 @@ max_records = 5000
 most_wanted_players = []
 
 def get_latest_wallpapers():
+    """
+    Downloads a browser.
+
+    Args:
+    """
     browser = webdriver.PhantomJS(PHANTOMJS_PATH, service_args=['--ignore-ssl-errors=true', '--ssl-protocol=any'])
     today_date = time.strftime("%d+%b+%Y")  
     yesterday = datetime.now() - timedelta(days=1)

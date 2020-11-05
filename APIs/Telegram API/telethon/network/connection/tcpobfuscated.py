@@ -10,6 +10,13 @@ class ObfuscatedIO:
     header = None
 
     def __init__(self, connection):
+        """
+        Initialize the connection.
+
+        Args:
+            self: (todo): write your description
+            connection: (todo): write your description
+        """
         self._reader = connection._reader
         self._writer = connection._writer
 
@@ -19,6 +26,12 @@ class ObfuscatedIO:
 
     @staticmethod
     def init_header(packet_codec):
+        """
+        Generate a random header.
+
+        Args:
+            packet_codec: (str): write your description
+        """
         # Obfuscated messages secrets cannot start with any of these
         keywords = (b'PVrG', b'GET ', b'POST', b'\xee\xee\xee\xee')
         while True:
@@ -45,9 +58,23 @@ class ObfuscatedIO:
         return (random, encryptor, decryptor)
 
     async def readexactly(self, n):
+          """
+          Reade to the n bytes.
+
+          Args:
+              self: (todo): write your description
+              n: (todo): write your description
+          """
         return self._decrypt.encrypt(await self._reader.readexactly(n))
 
     def write(self, data):
+        """
+        Encrypts the given writer.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         self._writer.write(self._encrypt.encrypt(data))
 
 

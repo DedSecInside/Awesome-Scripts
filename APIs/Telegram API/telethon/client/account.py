@@ -19,6 +19,15 @@ class _TakeoutClient:
     __PROXY_INTERFACE = ('__enter__', '__exit__', '__aenter__', '__aexit__')
 
     def __init__(self, finalize, client, request):
+        """
+        Initialize the request.
+
+        Args:
+            self: (todo): write your description
+            finalize: (todo): write your description
+            client: (todo): write your description
+            request: (dict): write your description
+        """
         # We use the name mangling for attributes to make them inaccessible
         # from within the shadowed client object and to distinguish them from
         # its own attributes where needed.
@@ -29,13 +38,32 @@ class _TakeoutClient:
 
     @property
     def success(self):
+        """
+        Returns the success message.
+
+        Args:
+            self: (todo): write your description
+        """
         return self.__success
 
     @success.setter
     def success(self, value):
+        """
+        Set the success value.
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         self.__success = value
 
     async def __aenter__(self):
+          """
+          Aenter object.
+
+          Args:
+              self: (todo): write your description
+          """
         # Enter/Exit behaviour is "overrode", we don't want to call start.
         client = self.__client
         if client.session.takeout_id is None:
@@ -46,6 +74,15 @@ class _TakeoutClient:
         return self
 
     async def __aexit__(self, exc_type, exc_value, traceback):
+          """
+          Triggers the session is raised.
+
+          Args:
+              self: (todo): write your description
+              exc_type: (todo): write your description
+              exc_value: (todo): write your description
+              traceback: (todo): write your description
+          """
         if self.__success is None and self.__finalize:
             self.__success = exc_type is None
 
@@ -60,6 +97,14 @@ class _TakeoutClient:
     __exit__ = helpers._sync_exit
 
     async def __call__(self, request, ordered=False):
+          """
+          Make a call to a request.
+
+          Args:
+              self: (todo): write your description
+              request: (todo): write your description
+              ordered: (bool): write your description
+          """
         takeout_id = self.__client.session.takeout_id
         if takeout_id is None:
             raise ValueError('Takeout mode has not been initialized '
@@ -78,6 +123,13 @@ class _TakeoutClient:
             wrapped[0] if single else wrapped, ordered=ordered)
 
     def __getattribute__(self, name):
+        """
+        Return the attribute of the given name.
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+        """
         # We access class via type() because __class__ will recurse infinitely.
         # Also note that since we've name-mangled our own class attributes,
         # they'll be passed to __getattribute__() as already decorated. For
@@ -91,6 +143,13 @@ class _TakeoutClient:
         return super().__getattribute__(name)
 
     def __getattr__(self, name):
+        """
+        Return the value of an attribute.
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+        """
         value = getattr(self.__client, name)
         if inspect.ismethod(value):
             # Emulate bound methods behavior by partially applying our proxy
@@ -101,6 +160,14 @@ class _TakeoutClient:
         return value
 
     def __setattr__(self, name, value):
+        """
+        Set an attribute of the attribute
+
+        Args:
+            self: (todo): write your description
+            name: (str): write your description
+            value: (todo): write your description
+        """
         if name.startswith('_{}__'.format(type(self).__name__.lstrip('_'))):
             # This is our own name-mangled attribute, keep calm.
             return super().__setattr__(name, value)

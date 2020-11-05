@@ -4,11 +4,24 @@ import json
 import sqlite3
 
 def does_movie_exist(conn, imdb_id):
+    """
+    Return true if the movie already exists.
+
+    Args:
+        conn: (todo): write your description
+        imdb_id: (str): write your description
+    """
   c = conn.cursor()
   c.execute('SELECT * FROM movies_watched WHERE imdb_id=' + '"' +  imdb_id + '"')
   return c.fetchone()
 
 def get_a_movie(conn):
+    """
+    Get movie movie by movie id.
+
+    Args:
+        conn: (str): write your description
+    """
   id = str(random.randint(0,9999999))
   imdb_id =  "tt" + id.rjust(7, '0')
   if does_movie_exist(conn, imdb_id):
@@ -19,6 +32,12 @@ def get_a_movie(conn):
   return movies
 
 def create_table_if_not_exists(conn):
+    """
+    Creates the table if it doesn t exist.
+
+    Args:
+        conn: (todo): write your description
+    """
   c = conn.cursor()
   c.execute(
     """
@@ -28,6 +47,13 @@ def create_table_if_not_exists(conn):
   conn.commit()
 
 def insert_into_table(conn, imdb_id):
+    """
+    Inserts a new table into the database.
+
+    Args:
+        conn: (todo): write your description
+        imdb_id: (str): write your description
+    """
   c = conn.cursor()
   c.execute(
     """

@@ -16,6 +16,11 @@ get_status = "defaults read -g AppleInterfaceStyle"
 
 
 def show_help():
+    """
+    Show the help message
+
+    Args:
+    """
     help_message = """
 Usage: python3 dark-mode.py [command]
 
@@ -64,6 +69,11 @@ def set_mode(mode):
 
 
 def main():
+    """
+    Main function.
+
+    Args:
+    """
     if platform.system() != "Darwin":
         print("Can only be run on macOS!")
         sys.exit()

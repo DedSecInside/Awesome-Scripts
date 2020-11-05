@@ -11,6 +11,11 @@ from random import choice
 
 
 def get_proxy():
+    """
+    Returns a dictionary
+
+    Args:
+    """
     url = "https://www.sslproxies.org/"
     r = requests.get(url)
     soup = BeautifulSoup(r.content, 'html5lib')
@@ -18,6 +23,13 @@ def get_proxy():
                                                                       map(lambda x:x.text, soup.findAll('td')[1::8]))))))}
 
 def proxy_request(request_type, url, **kwargs):
+    """
+    Make a request to the api.
+
+    Args:
+        request_type: (str): write your description
+        url: (str): write your description
+    """
     while 1:
         try:
             proxy = get_proxy()

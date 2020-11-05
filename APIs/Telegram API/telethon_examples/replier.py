@@ -20,6 +20,15 @@ recent_reacts = defaultdict(float)
 
 
 def get_env(name, message, cast=str):
+    """
+    Get an environment variable.
+
+    Args:
+        name: (str): write your description
+        message: (str): write your description
+        cast: (todo): write your description
+        str: (str): write your description
+    """
     if name in os.environ:
         return os.environ[name]
     while True:
@@ -32,6 +41,12 @@ def get_env(name, message, cast=str):
 
 
 def can_react(chat_id):
+    """
+    Checks if a user can be fetcher
+
+    Args:
+        chat_id: (str): write your description
+    """
     # Get the time when we last sent a reaction (or 0)
     last = recent_reacts[chat_id]
 
@@ -51,6 +66,12 @@ def can_react(chat_id):
 # Once you have a client, `add_event_handler` will use this event.
 @events.register(events.NewMessage)
 async def handler(event):
+      """
+      Use this method.
+
+      Args:
+          event: (todo): write your description
+      """
     # There are better ways to do this, but this is simple.
     # If the message is not outgoing (i.e. someone else sent it)
     if not event.out:

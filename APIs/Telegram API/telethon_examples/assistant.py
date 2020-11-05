@@ -37,6 +37,15 @@ except ImportError:
 
 
 def get_env(name, message, cast=str):
+    """
+    Get an environment variable.
+
+    Args:
+        name: (str): write your description
+        message: (str): write your description
+        cast: (todo): write your description
+        str: (str): write your description
+    """
     if name in os.environ:
         return os.environ[name]
     while True:
@@ -55,6 +64,11 @@ NAME = TOKEN.split(':')[0]
 
 
 async def main():
+      """
+      Main function.
+
+      Args:
+      """
     bot = TelegramClient(NAME, API_ID, API_HASH)
 
     await bot.start(bot_token=TOKEN)

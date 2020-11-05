@@ -49,6 +49,11 @@ def decipher(sentence: str, key: int, ignore: str):
 
 
 def main():
+    """
+    Main function.
+
+    Args:
+    """
 	sentences = {}
 	ignores = ''
 

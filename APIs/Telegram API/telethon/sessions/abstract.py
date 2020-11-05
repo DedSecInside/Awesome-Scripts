@@ -3,6 +3,12 @@ from abc import ABC, abstractmethod
 
 class Session(ABC):
     def __init__(self):
+        """
+        Initialize the object
+
+        Args:
+            self: (todo): write your description
+        """
         pass
 
     def clone(self, to_instance=None):

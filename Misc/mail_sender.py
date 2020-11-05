@@ -6,6 +6,12 @@ from email.mime.text import MIMEText
 # Function to read the contacts from a given contact file and return a
 # list of names and email addresses
 def get_contacts(filename):
+    """
+    Return list of the contacts
+
+    Args:
+        filename: (str): write your description
+    """
     names = []
     emails = []
     with open(filename, mode='r', encoding='utf-8') as contacts_file:
@@ -15,6 +21,12 @@ def get_contacts(filename):
     return names, emails
 
 def read_template(filename):
+    """
+    Reads a template from a file.
+
+    Args:
+        filename: (str): write your description
+    """
     with open(filename, 'r', encoding='utf-8') as template_file:
         template_file_content = template_file.read()
     return Template(template_file_content)

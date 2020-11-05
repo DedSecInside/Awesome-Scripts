@@ -4,6 +4,12 @@ import json
 
 # Create Dictionary element for each hotel entry
 def prepareEntry(job_elem):
+    """
+    Prepare the json job.
+
+    Args:
+        job_elem: (todo): write your description
+    """
     name = job_elem.find(
         "h3", class_="listingHotelDescription__hotelName d-textEllipsis"
     ).text.strip()
@@ -31,6 +37,12 @@ def prepareEntry(job_elem):
 
 # Extract urls from tags
 def extractValue(s):
+    """
+    Extracts the string
+
+    Args:
+        s: (str): write your description
+    """
     s = s[1 : len(s) - 2]
     arr = s.split()
     for i in arr:
@@ -39,6 +51,12 @@ def extractValue(s):
 
 # Scrap the url 
 def getHotels(url):
+    """
+    Return a list of hotels.
+
+    Args:
+        url: (str): write your description
+    """
     req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
     webpage = urlopen(req).read()
     page = soup(webpage, "html.parser")

@@ -44,6 +44,21 @@ class MTProtoSender:
                  retries=5, delay=1, auto_reconnect=True, connect_timeout=None,
                  auth_key_callback=None,
                  update_callback=None, auto_reconnect_callback=None):
+        """
+        Initialize a new client.
+
+        Args:
+            self: (todo): write your description
+            auth_key: (str): write your description
+            loggers: (todo): write your description
+            retries: (todo): write your description
+            delay: (float): write your description
+            auto_reconnect: (bool): write your description
+            connect_timeout: (float): write your description
+            auth_key_callback: (callable): write your description
+            update_callback: (todo): write your description
+            auto_reconnect_callback: (todo): write your description
+        """
         self._connection = None
         self._loggers = loggers
         self._log = loggers[__name__]
@@ -125,9 +140,21 @@ class MTProtoSender:
             return True
 
     def is_connected(self):
+        """
+        Returns true if the user is connected to.
+
+        Args:
+            self: (todo): write your description
+        """
         return self._user_connected
 
     def _transport_connected(self):
+        """
+        Return a connected transport.
+
+        Args:
+            self: (todo): write your description
+        """
         return (
             not self._reconnecting
             and self._connection is not None
@@ -268,6 +295,13 @@ class MTProtoSender:
         self._log.info('Connection to %s complete!', self._connection)
 
     async def _try_connect(self, attempt):
+          """
+          Try to connect to a connection.
+
+          Args:
+              self: (todo): write your description
+              attempt: (todo): write your description
+          """
         try:
             self._log.debug('Connection attempt %d...', attempt)
             await self._connection.connect(timeout=self._connect_timeout)
@@ -280,6 +314,13 @@ class MTProtoSender:
             return False
 
     async def _try_gen_auth_key(self, attempt):
+          """
+          Try to authenticate the authentication key.
+
+          Args:
+              self: (todo): write your description
+              attempt: (str): write your description
+          """
         plain = MTProtoPlainSender(self._connection, loggers=self._loggers)
         try:
             self._log.debug('New auth_key attempt %d...', attempt)
@@ -301,6 +342,13 @@ class MTProtoSender:
             return False
 
     async def _disconnect(self, error=None):
+          """
+          Disconnect from the broker.
+
+          Args:
+              self: (todo): write your description
+              error: (todo): write your description
+          """
         if self._connection is None:
             self._log.info('Not disconnecting (already have no connection)')
             return
@@ -622,6 +670,13 @@ class MTProtoSender:
             await self._process_message(message)
 
     async def _handle_update(self, message):
+          """
+          Handles a message.
+
+          Args:
+              self: (todo): write your description
+              message: (str): write your description
+          """
         try:
             assert message.obj.SUBCLASS_OF_ID == 0x8af52aac  # crc32(b'Updates')
         except AssertionError:

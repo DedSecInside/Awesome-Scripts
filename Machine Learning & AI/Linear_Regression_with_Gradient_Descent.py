@@ -12,6 +12,16 @@ import numpy as np
 
 #Sum of Squares Error
 def sse(n,a0,a1,x,y):
+    """
+    Compute the sse sse sse.
+
+    Args:
+        n: (array): write your description
+        a0: (array): write your description
+        a1: (array): write your description
+        x: (array): write your description
+        y: (array): write your description
+    """
     s=0
     mean=np.mean(y)
     for i in range(n):
@@ -20,6 +30,18 @@ def sse(n,a0,a1,x,y):
 
 #Calculate the cost function
 def cost(n,a0,a1,x,y,ch,p=2):
+    """
+    Calculate the cost between two points.
+
+    Args:
+        n: (todo): write your description
+        a0: (todo): write your description
+        a1: (todo): write your description
+        x: (todo): write your description
+        y: (todo): write your description
+        ch: (todo): write your description
+        p: (todo): write your description
+    """
     s=0;
     if ch=='sum-of-squares':
         for i in range(n):
@@ -32,6 +54,16 @@ def cost(n,a0,a1,x,y,ch,p=2):
 
 #Partial Differential with respect to a0
 def dela0(n,a0,a1,x,y):
+    """
+    Dela0 dela0.
+
+    Args:
+        n: (array): write your description
+        a0: (array): write your description
+        a1: (array): write your description
+        x: (array): write your description
+        y: (array): write your description
+    """
     s=0;
     for i in range(n):
         s+=(a0+a1*x[i]-y[i])
@@ -39,12 +71,33 @@ def dela0(n,a0,a1,x,y):
 
 #Partial Differential with respect to a1
 def dela1(n,a0,a1,x,y):
+    """
+    Dela1 dela1 dela1 dela
+
+    Args:
+        n: (array): write your description
+        a0: (array): write your description
+        a1: (array): write your description
+        x: (array): write your description
+        y: (array): write your description
+    """
     s=0;
     for i in range(n):
         s+=(a0+a1*x[i]-y[i])*x[i]
     return s/n
 
 def predict(x, y, alphas=np.linspace(0.001,1,10), it=1000):
+    """
+    Predict the predicted )
+
+    Args:
+        x: (array): write your description
+        y: (array): write your description
+        alphas: (array): write your description
+        np: (array): write your description
+        linspace: (array): write your description
+        it: (array): write your description
+    """
     mx=max(x)
     my=max(y)
     
@@ -63,6 +116,15 @@ def predict(x, y, alphas=np.linspace(0.001,1,10), it=1000):
     return pred
     
 def grad_desc(x, y, alphas, it):
+    """
+    Describe the objective function.
+
+    Args:
+        x: (todo): write your description
+        y: (todo): write your description
+        alphas: (todo): write your description
+        it: (todo): write your description
+    """
     r2=[]# Array to store calculated R^2 values
     coeff=[] #Array to store Predicted Coefficients for Linear Regression
     
@@ -86,6 +148,13 @@ def grad_desc(x, y, alphas, it):
     return coeff, r2, cos
     
 def r2_alpha(r2, alphas):
+    """
+    Plot r2 alpha
+
+    Args:
+        r2: (todo): write your description
+        alphas: (array): write your description
+    """
     #Plot for R^2 vs alpha
     plt.plot(alphas, r2)
     plt.title('R^2 vs. Learning Rate')
@@ -96,6 +165,16 @@ def r2_alpha(r2, alphas):
     print(np.linspace(0.001,1,10)[r2.index(max(r2))])
    
 def rescale(x, y, coeff, mx, my):
+    """
+    Rescale x y - axis.
+
+    Args:
+        x: (todo): write your description
+        y: (todo): write your description
+        coeff: (todo): write your description
+        mx: (todo): write your description
+        my: (todo): write your description
+    """
     # Bring the data back to scale
     for i in range(len(coeff)):
         coeff[i][0]*=my
@@ -106,6 +185,17 @@ def rescale(x, y, coeff, mx, my):
     return coeff, x, y
 
 def plot_predict(x, y, coeff, r2, cos, it):        
+    """
+    Plots the r2d plot
+
+    Args:
+        x: (array): write your description
+        y: (array): write your description
+        coeff: (array): write your description
+        r2: (array): write your description
+        cos: (array): write your description
+        it: (array): write your description
+    """
     # Plot the training data, cost function and Predicted vs Actual values
     fig1,ax=plt.subplots(1,2,figsize=(14,4))
     ax[0].plot([x for x in range(it)],cos)

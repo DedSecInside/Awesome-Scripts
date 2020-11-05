@@ -60,6 +60,12 @@ class TLObject:
 
     @property
     def innermost_result(self):
+        """
+        Returns the result.
+
+        Args:
+            self: (todo): write your description
+        """
         index = self.result.find('<')
         if index == -1:
             return self.result
@@ -75,6 +81,13 @@ class TLObject:
                       key=lambda x: x.is_flag or x.can_be_inferred)
 
     def __repr__(self, ignore_id=False):
+        """
+        Return a human - readable representation of this object.
+
+        Args:
+            self: (todo): write your description
+            ignore_id: (str): write your description
+        """
         if self.id is None or ignore_id:
             hex_id = ''
         else:
@@ -88,6 +101,12 @@ class TLObject:
         return '{}{}{} = {}'.format(self.fullname, hex_id, args, self.result)
 
     def infer_id(self):
+        """
+        Infer a unique id.
+
+        Args:
+            self: (todo): write your description
+        """
         representation = self.__repr__(ignore_id=True)
         representation = representation\
             .replace(':bytes ', ':string ')\
@@ -103,6 +122,12 @@ class TLObject:
         return zlib.crc32(representation.encode('ascii'))
 
     def to_dict(self):
+        """
+        Convert the dict representation.
+
+        Args:
+            self: (todo): write your description
+        """
         return {
             'id':
                 str(struct.unpack('i', struct.pack('I', self.id))[0]),
@@ -115,9 +140,23 @@ class TLObject:
         }
 
     def is_good_example(self):
+        """
+        Returns true if the class is an example.
+
+        Args:
+            self: (todo): write your description
+        """
         return not self.class_name.endswith('Empty')
 
     def as_example(self, f, indent=0):
+        """
+        Writes example as a function f.
+
+        Args:
+            self: (todo): write your description
+            f: (todo): write your description
+            indent: (todo): write your description
+        """
         f.write('functions' if self.is_function else 'types')
         if self.namespace:
             f.write('.')

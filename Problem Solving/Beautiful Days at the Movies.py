@@ -8,6 +8,14 @@ import sys
 
 # Complete the beautifulDays function below.
 def beautifulDays(i, j, k):
+    """
+    Computes the i j - th element i.
+
+    Args:
+        i: (array): write your description
+        j: (array): write your description
+        k: (array): write your description
+    """
     count = 0;
     mylist=[]
     for i in range(i,j+1):

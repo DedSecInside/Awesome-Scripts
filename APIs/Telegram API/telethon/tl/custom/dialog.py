@@ -70,6 +70,16 @@ class Dialog:
             `True` if the `entity` is a :tl:`Channel`.
     """
     def __init__(self, client, dialog, entities, message):
+        """
+        Initialize this message.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            dialog: (todo): write your description
+            entities: (dict): write your description
+            message: (str): write your description
+        """
         # Both entities and messages being dicts {ID: item}
         self._client = client
         self.dialog = dialog
@@ -145,6 +155,12 @@ class Dialog:
         ]))
 
     def to_dict(self):
+        """
+        Return a dict representation of the message.
+
+        Args:
+            self: (todo): write your description
+        """
         return {
             '_': 'Dialog',
             'name': self.name,
@@ -155,7 +171,19 @@ class Dialog:
         }
 
     def __str__(self):
+        """
+        Return a human - formatted string
+
+        Args:
+            self: (todo): write your description
+        """
         return TLObject.pretty_format(self.to_dict())
 
     def stringify(self):
+        """
+        Return a string representation of this object.
+
+        Args:
+            self: (todo): write your description
+        """
         return TLObject.pretty_format(self.to_dict(), indent=0)

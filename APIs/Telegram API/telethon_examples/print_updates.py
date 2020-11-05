@@ -12,6 +12,15 @@ from telethon import TelegramClient
 # This is a helper method to access environment variables or
 # prompt the user to type them in the terminal if missing.
 def get_env(name, message, cast=str):
+    """
+    Get an environment variable.
+
+    Args:
+        name: (str): write your description
+        message: (str): write your description
+        cast: (todo): write your description
+        str: (str): write your description
+    """
     if name in os.environ:
         return os.environ[name]
     while True:
@@ -32,6 +41,12 @@ proxy = None  # https://github.com/Anorov/PySocks
 
 # This is our update handler. It is called when a new update arrives.
 async def handler(update):
+      """
+      Handler for the given update.
+
+      Args:
+          update: (todo): write your description
+      """
     print(update)
 
 

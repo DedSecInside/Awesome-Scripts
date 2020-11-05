@@ -11,6 +11,13 @@ class HttpPacketCodec(PacketCodec):
     obfuscate_tag = None
 
     def encode_packet(self, data):
+        """
+        Encode packet to binary.
+
+        Args:
+            self: (todo): write your description
+            data: (todo): write your description
+        """
         return ('POST /api HTTP/1.1\r\n'
                 'Host: {}:{}\r\n'
                 'Content-Type: application/x-www-form-urlencoded\r\n'
@@ -21,6 +28,13 @@ class HttpPacketCodec(PacketCodec):
                 .encode('ascii') + data)
 
     async def read_packet(self, reader):
+          """
+          Read a packet from the socket.
+
+          Args:
+              self: (todo): write your description
+              reader: (todo): write your description
+          """
         while True:
             line = await reader.readline()
             if not line or line[-1] != b'\n':
@@ -36,4 +50,12 @@ class ConnectionHttp(Connection):
     packet_codec = HttpPacketCodec
 
     async def connect(self, timeout=None, ssl=None):
+          """
+          Establish connection.
+
+          Args:
+              self: (todo): write your description
+              timeout: (int): write your description
+              ssl: (str): write your description
+          """
         await super().connect(timeout=timeout, ssl=self._port == SSL_PORT)

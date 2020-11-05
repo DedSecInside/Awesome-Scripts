@@ -8,6 +8,13 @@ from telethon import TelegramClient, utils
 
 
 def get_env(name, message):
+    """
+    Get the environment variable.
+
+    Args:
+        name: (str): write your description
+        message: (str): write your description
+    """
     if name in os.environ:
         return os.environ[name]
     return input(message)
@@ -55,6 +62,12 @@ app.secret_key = 'CHANGE THIS TO SOMETHING SECRET'
 
 # Helper method to format messages nicely
 async def format_message(message):
+      """
+      Format message as text.
+
+      Args:
+          message: (todo): write your description
+      """
     if message.photo:
         content = '<img src="data:image/png;base64,{}" alt="{}" />'.format(
             base64.b64encode(await message.download_media(bytes)).decode(),
@@ -74,17 +87,32 @@ async def format_message(message):
 # Connect the client before we start serving with Quart
 @app.before_serving
 async def startup():
+      """
+      Start a connection.
+
+      Args:
+      """
     await client.connect()
 
 
 # After we're done serving (near shutdown), clean up the client
 @app.after_serving
 async def cleanup():
+      """
+      Cleanup the client.
+
+      Args:
+      """
     await client.disconnect()
 
 
 @app.route('/', methods=['GET', 'POST'])
 async def root():
+      """
+      Displays the user.
+
+      Args:
+      """
     # We want to update the global phone variable to remember it
     global phone
 
@@ -116,6 +144,11 @@ async def root():
 
 
 async def main():
+      """
+      Main entry point.
+
+      Args:
+      """
     await hypercorn.asyncio.serve(app, hypercorn.Config())
 
 

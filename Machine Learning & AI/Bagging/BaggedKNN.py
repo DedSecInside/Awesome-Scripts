@@ -5,6 +5,11 @@ import csv
 import random
 
 def main():
+    """
+    Main function.
+
+    Args:
+    """
 	# prepare data
 	trainingSet=[]
 	testSet=[]
@@ -32,6 +37,15 @@ def main():
 
 
 def loadDataset(filename, split, trainingSet=[] , testSet=[]):
+    """
+    Load a dataset.
+
+    Args:
+        filename: (str): write your description
+        split: (str): write your description
+        trainingSet: (todo): write your description
+        testSet: (list): write your description
+    """
 	with open(filename, 'rb') as csvfile:
 	    lines = csv.reader(csvfile)
 	    dataset = list(lines)

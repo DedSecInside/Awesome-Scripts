@@ -1,4 +1,11 @@
 def generate_errors(errors, f):
+    """
+    Generate the errors for the given exception.
+
+    Args:
+        errors: (todo): write your description
+        f: (todo): write your description
+    """
     # Exact/regex match to create {CODE: ErrorClassName}
     exact_match = []
     regex_match = []

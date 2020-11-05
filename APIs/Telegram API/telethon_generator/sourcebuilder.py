@@ -2,6 +2,14 @@ class SourceBuilder:
     """This class should be used to build .py source files"""
 
     def __init__(self, out_stream, indent_size=4):
+        """
+        Initialize the stream.
+
+        Args:
+            self: (todo): write your description
+            out_stream: (str): write your description
+            indent_size: (int): write your description
+        """
         self.current_indent = 0
         self.on_new_line = False
         self.indent_size = indent_size
@@ -55,11 +63,32 @@ class SourceBuilder:
             self.auto_added_line = True
 
     def __str__(self):
+        """
+        Reads the stream from the stream.
+
+        Args:
+            self: (todo): write your description
+        """
         self.out_stream.seek(0)
         return self.out_stream.read()
 
     def __enter__(self):
+        """
+        Decor function.
+
+        Args:
+            self: (todo): write your description
+        """
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        """
+        Exit the given exception.
+
+        Args:
+            self: (todo): write your description
+            exc_type: (todo): write your description
+            exc_val: (todo): write your description
+            exc_tb: (todo): write your description
+        """
         self.out_stream.close()

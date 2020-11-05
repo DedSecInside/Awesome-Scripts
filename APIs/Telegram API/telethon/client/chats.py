@@ -42,6 +42,17 @@ class _ChatAction:
     }
 
     def __init__(self, client, chat, action, *, delay, auto_cancel):
+        """
+        Initialize the client.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            chat: (todo): write your description
+            action: (todo): write your description
+            delay: (float): write your description
+            auto_cancel: (bool): write your description
+        """
         self._client = client
         self._chat = chat
         self._action = action
@@ -52,6 +63,12 @@ class _ChatAction:
         self._running = False
 
     async def __aenter__(self):
+          """
+          Use this message.
+
+          Args:
+              self: (todo): write your description
+          """
         self._chat = await self._client.get_input_entity(self._chat)
 
         # Since `self._action` is passed by reference we can avoid
@@ -65,6 +82,12 @@ class _ChatAction:
         return self
 
     async def __aexit__(self, *args):
+          """
+          Cancel the task.
+
+          Args:
+              self: (todo): write your description
+          """
         self._running = False
         if self._task:
             self._task.cancel()
@@ -79,6 +102,12 @@ class _ChatAction:
     __exit__ = helpers._sync_exit
 
     async def _update(self):
+          """
+          Updates the threads.
+
+          Args:
+              self: (todo): write your description
+          """
         try:
             while self._running:
                 await self._client(self._request)
@@ -91,12 +120,30 @@ class _ChatAction:
                     self._chat, types.SendMessageCancelAction()))
 
     def progress(self, current, total):
+        """
+        Prints the progress bar.
+
+        Args:
+            self: (todo): write your description
+            current: (todo): write your description
+            total: (int): write your description
+        """
         if hasattr(self._action, 'progress'):
             self._action.progress = 100 * round(current / total)
 
 
 class _ParticipantsIter(RequestIter):
     async def _init(self, entity, filter, search, aggressive):
+          """
+          Initialize the channel.
+
+          Args:
+              self: (todo): write your description
+              entity: (todo): write your description
+              filter: (list): write your description
+              search: (todo): write your description
+              aggressive: (todo): write your description
+          """
         if isinstance(filter, type):
             if filter in (types.ChannelParticipantsBanned,
                           types.ChannelParticipantsKicked,
@@ -182,6 +229,12 @@ class _ParticipantsIter(RequestIter):
             return True
 
     async def _load_next_chunk(self):
+          """
+          Fetch next available next available entities.
+
+          Args:
+              self: (todo): write your description
+          """
         if not self.requests:
             return True
 
@@ -223,6 +276,31 @@ class _AdminLogIter(RequestIter):
             join, leave, invite, restrict, unrestrict, ban, unban,
             promote, demote, info, settings, pinned, edit, delete
     ):
+          """
+          Initialize an adb.
+
+          Args:
+              self: (todo): write your description
+              entity: (todo): write your description
+              admins: (int): write your description
+              search: (todo): write your description
+              min_id: (int): write your description
+              max_id: (int): write your description
+              join: (todo): write your description
+              leave: (str): write your description
+              invite: (todo): write your description
+              restrict: (bool): write your description
+              unrestrict: (todo): write your description
+              ban: (str): write your description
+              unban: (str): write your description
+              promote: (todo): write your description
+              demote: (todo): write your description
+              info: (bool): write your description
+              settings: (dict): write your description
+              pinned: (todo): write your description
+              edit: (todo): write your description
+              delete: (todo): write your description
+          """
         if any((join, leave, invite, restrict, unrestrict, ban, unban,
                 promote, demote, info, settings, pinned, edit, delete)):
             events_filter = types.ChannelAdminLogEventsFilter(
@@ -250,6 +328,12 @@ class _AdminLogIter(RequestIter):
         )
 
     async def _load_next_chunk(self):
+          """
+          Load the next chunk.
+
+          Args:
+              self: (todo): write your description
+          """
         self.request.limit = min(self.left, _MAX_ADMIN_LOG_CHUNK_SIZE)
         r = await self.client(self.request)
         entities = {utils.get_peer_id(x): x
@@ -280,6 +364,15 @@ class _ProfilePhotoIter(RequestIter):
     async def _init(
             self, entity, offset, max_id
     ):
+          """
+          Initialize the search result.
+
+          Args:
+              self: (todo): write your description
+              entity: (todo): write your description
+              offset: (int): write your description
+              max_id: (int): write your description
+          """
         entity = await self.client.get_input_entity(entity)
         ty = helpers._entity_type(entity)
         if ty == helpers._EntityType.USER:
@@ -316,6 +409,12 @@ class _ProfilePhotoIter(RequestIter):
                 self.total = getattr(result, 'count', None)
 
     async def _load_next_chunk(self):
+          """
+          Use this method to load the next chunk.
+
+          Args:
+              self: (todo): write your description
+          """
         self.request.limit = min(self.left, _MAX_PROFILE_PHOTO_CHUNK_SIZE)
         result = await self.client(self.request)
 

@@ -100,6 +100,17 @@ todo_include_todos = False
 
 
 def skip(app, what, name, obj, would_skip, options):
+    """
+    Returns true if app is skip.
+
+    Args:
+        app: (todo): write your description
+        what: (str): write your description
+        name: (str): write your description
+        obj: (todo): write your description
+        would_skip: (bool): write your description
+        options: (dict): write your description
+    """
     if name.endswith('__'):
         # We want to show special methods names, except some which add clutter
         return name in {
@@ -114,6 +125,12 @@ def skip(app, what, name, obj, would_skip, options):
 
 
 def setup(app):
+    """
+    Sets the extension.
+
+    Args:
+        app: (todo): write your description
+    """
     app.connect("autodoc-skip-member", skip)
 
 

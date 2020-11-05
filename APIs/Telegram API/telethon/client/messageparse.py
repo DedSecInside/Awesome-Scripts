@@ -51,6 +51,13 @@ class MessageParseMethods:
 
     @parse_mode.setter
     def parse_mode(self: 'TelegramClient', mode: str):
+        """
+        Parses the given mode.
+
+        Args:
+            self: (todo): write your description
+            mode: (todo): write your description
+        """
         self._parse_mode = utils.sanitize_parse_mode(mode)
 
     # endregion

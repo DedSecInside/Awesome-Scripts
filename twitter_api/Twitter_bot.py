@@ -15,18 +15,36 @@ api = tweepy.API(auth)
 FILE_NAME = 'last_seen_id.txt'
 
 def retrieve_last_seen_id(file_name):
+    """
+    Retrieve the last release id of a file.
+
+    Args:
+        file_name: (str): write your description
+    """
 	f_read = open(file_name, 'r')
 	last_seen_id = int(f_read.read().strip())
 	f_read.close()
 	return last_seen_id
 
 def store_last_seen_id(last_seen_id, file_name):
+    """
+    Store the last modified_seen_id.
+
+    Args:
+        last_seen_id: (str): write your description
+        file_name: (str): write your description
+    """
 	f_write = open(file_name, 'w')
 	f_write.write(str(last_seen_id))
 	f_write.close()
 	return
 
 def reply_to_tweets():
+    """
+    Reply to the last reply.
+
+    Args:
+    """
 	last_seen_id = retrieve_last_seen_id(FILE_NAME)	
 #chcp 65001
 	mentions= api.mentions_timeline(

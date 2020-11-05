@@ -26,6 +26,16 @@ class InlineResult:
     GAME = 'game'
 
     def __init__(self, client, original, query_id=None, *, entity=None):
+        """
+        Initialize the query.
+
+        Args:
+            self: (todo): write your description
+            client: (todo): write your description
+            original: (todo): write your description
+            query_id: (str): write your description
+            entity: (todo): write your description
+        """
         self._client = client
         self.result = original
         self._query_id = query_id

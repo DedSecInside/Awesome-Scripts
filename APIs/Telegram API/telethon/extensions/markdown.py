@@ -27,6 +27,15 @@ DEFAULT_URL_FORMAT = '[{0}]({1})'
 
 
 def overlap(a, b, x, y):
+    """
+    Returns true if two points overlap
+
+    Args:
+        a: (todo): write your description
+        b: (todo): write your description
+        x: (todo): write your description
+        y: (todo): write your description
+    """
     return max(a, x) < min(b, y)
 
 

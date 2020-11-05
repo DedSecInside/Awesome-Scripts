@@ -4,12 +4,25 @@ from urllib.request import Request, urlopen, urlretrieve
 
 
 def save(url, filename):
+    """
+    Save the given url.
+
+    Args:
+        url: (str): write your description
+        filename: (str): write your description
+    """
     # This function inputs the image link and the name with which
     # the image needs to be saved, and thus downloads that image
     urlretrieve(url, filename)
 
 
 def scrape(q):
+    """
+    Scrape the given query
+
+    Args:
+        q: (str): write your description
+    """
     # This function scrapes the google images for the particular keyword
     # and saves the first picture related to it.
     url = "https://www.google.com/search?q={}&source=lnms&tbm=isch".format(q)
