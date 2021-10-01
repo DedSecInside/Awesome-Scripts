@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="pic.svg" width="200" title="Hacktoberfest 2020">
+  <img src="pic.png" width="200" title="Hacktoberfest 2021">
 </p>
 
 # Guidelines for Hacktoberfest 2020:
