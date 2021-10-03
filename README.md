@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="pic.png" width="200" title="Hacktoberfest 2021">
-</p>
+![Hacktoberfest 2021](https://hacktoberfest.digitalocean.com/_nuxt/img/logo-hacktoberfest-full.f42e3b1.svg)
 
 # Guidelines for Hacktoberfest 2021:
 ## About Hacktoberfest:
