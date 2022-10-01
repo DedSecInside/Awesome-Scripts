@@ -1,6 +1,6 @@
-![Hacktoberfest 2021](https://hacktoberfest.digitalocean.com/_nuxt/img/logo-hacktoberfest-full.f42e3b1.svg)
+![Hacktoberfest 2022](https://user-images.githubusercontent.com/4481429/191882921-527cb8e0-91ad-4f3f-bc26-9df533857133.png)
 
-# Guidelines for Hacktoberfest 2021:
+# Guidelines for Hacktoberfest 2022:
 ## About Hacktoberfest:
 
 Hacktoberfest is organised by DigitalOcean in partnership with Dev, Intel, DeepSource & Appwrite. It is a month-long celebration of open-source software. Maintainers are invited to guide the contributors who would like to work in the issues so that the project gets better, and contributors get the opportunity to give back to both projects they like and others they've just discovered. No contribution is too small — bug fixes and documentation updates are valid ways of participating.
