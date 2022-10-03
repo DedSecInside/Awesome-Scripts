@@ -162,6 +162,7 @@ Below you can find the list of all awesome scripts which are very useful for the
 * cricbuzz_scrap
 * scrape_images
 * oyo_scrap
+* Proxy Scraper
 
 ## How to use these scripts?
 
