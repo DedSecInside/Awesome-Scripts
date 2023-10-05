@@ -1,0 +1,60 @@
+import os
+import time
+import subprocess
+import speech_recognition as sr
+
+# Set up the command for ffmpeg to split the audio into chunks
+stream_url = "https://idvd.multitvsolution.com/idvo/bharatsamachar.m3u8"
+chunk_duration = 5  # Duration of chunks in seconds
+command = ['ffmpeg', '-i', stream_url, '-f', 'segment', '-segment_time', str(chunk_duration), 'output%03d.wav']
+
+# Start ffmpeg process
+ffmpeg = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+# Initialize recognizer class (for recognizing the speech)
+r = sr.Recognizer()
+
+def transcribe_audio(filename):
+    # Use the wav file as the audio source
+    with sr.AudioFile(filename) as source:
+        # Read the entire audio file
+        audio = r.record(source)
+        # Transcribe the audio
+        return r.recognize_google(audio)
+
+def write_srt_file(filename, index, start, end, text):
+    # Open the SRT file in append mode
+    with open(filename, 'a') as f:
+        f.write(f"{index}\n")
+        f.write(f"{start} --> {end}\n")
+        f.write(f"{text}\n\n")
+
+# Transcribe each chunk as it becomes available
+chunk_index = 0
+try:
+    while True:
+        # Wait for the next chunk to become available
+        time.sleep(chunk_duration)
+        filename = f'output{chunk_index:03d}.wav'
+        if os.path.exists(filename):
+            try:
+                text = transcribe_audio(filename)
+                print(text)
+                start = time.strftime('%H:%M:%S', time.gmtime(chunk_index * chunk_duration))
+                end = time.strftime('%H:%M:%S', time.gmtime((chunk_index + 1) * chunk_duration))
+                write_srt_file('transcription.srt', chunk_index+1, start, end, text)
+            except Exception as e:
+                print(e)
+
+            # Delete the chunk after transcribing it
+            os.remove(filename)
+            chunk_index += 1
+except KeyboardInterrupt:
+    # If a keyboard interrupt is detected, terminate the ffmpeg process
+    ffmpeg.terminate()
+    print("Stopped ffmpeg process.")
+    # Delete all .wav files
+    for f in os.listdir('.'):
+        if f.endswith('.wav'):
+            os.remove(f)
+    print("Deleted all .wav files.")
