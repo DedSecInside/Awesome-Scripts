@@ -5,10 +5,15 @@ try:
 	from discord.ext import commands
 except ImportError:
 	print('Please pip install discord')
+try:
+        import os
+        from dotenv import load_dotenv
+except ImportError:
+        print('Please pip install python-dotenv')
 
 
-PREFIX = '!'
-TOKEN = ''  # Place token here
+PREFIX = os.environ.get("PREFIX") if os.environ.get("PREFIX") else '!'
+TOKEN  = os.environ.get("TOKEN")
 bot = commands.Bot(command_prefix=PREFIX)
 
 
